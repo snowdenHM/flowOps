@@ -1,0 +1,15 @@
+
+.dm-badge-list{
+    margin: -5px -6px;
+    .badge{
+        margin: 5px 6px;
+    }
+    .badge-text{
+        background: transparent;
+    }
+}
+
+.badge-info-10{
+    background-color: rgba(var(--color-info-rgba), .10);
+    color: var(--color-info);
+}

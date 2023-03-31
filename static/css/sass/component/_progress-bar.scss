@@ -1,0 +1,32 @@
+// Progress bar Css
+.progress-wrap{
+    .progress{
+        flex: 28;
+        .progress-bar{
+            border-radius: 10px;
+        }
+    }
+    .progress-percentage,
+    .progress-icon{
+        flex: 1;
+    }
+    .progress-height{
+        height: 5px;
+        background-color: rgba(var(--color-white-rgba), .20);
+    }
+
+    .progress-percentage{
+        font-size: 12px;
+        font-weight: 500;
+        margin-left: 10px;
+    }
+    .progress-icon{
+        margin-left: 10px;
+        svg,
+        i,
+        span,
+        img{
+            width: 14px;
+        }
+    }
+}

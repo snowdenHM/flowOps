@@ -1,0 +1,72 @@
+// Keyframs
+@keyframes spinMove {
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(410deg);
+  }
+}
+
+@keyframes shimmerEffect {
+  0% {
+    background-position: -468px 0;
+  }
+
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+
+/* BELL */
+
+
+@keyframes ring {
+  0% {
+    transform: rotate(-15deg);
+  }
+
+  2% {
+    transform: rotate(15deg);
+  }
+
+  4% {
+    transform: rotate(-18deg);
+  }
+
+  6% {
+    transform: rotate(18deg);
+  }
+
+  8% {
+    transform: rotate(-22deg);
+  }
+
+  10% {
+    transform: rotate(22deg);
+  }
+
+  12% {
+    transform: rotate(-18deg);
+  }
+
+  14% {
+    transform: rotate(18deg);
+  }
+
+  16% {
+    transform: rotate(-12deg);
+  }
+
+  18% {
+    transform: rotate(12deg);
+  }
+
+  20% {
+    transform: rotate(0deg);
+  }
+}

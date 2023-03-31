@@ -1,0 +1,64 @@
+<!doctype html>
+{% load static %}
+<html lang="en" dir="{% if request.session.dir %}{{request.session.dir}}{% else %} ltr {% endif %}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FlowOps - {% block title %} {% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    {% if request.session.dir and request.session.dir == 'rtl' %}
+        <link  rel="stylesheet" href="{% static 'css/plugin.min.rtl.css' %}">
+        <link  rel="stylesheet" href="{% static 'css/style.rtl.css' %}">
+    {% else %}
+        <link  rel="stylesheet" href="{% static 'css/plugin.min.css' %}">
+        <link  rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% endif %}
+
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon.png' %}">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.0/css/line.css">
+</head>
+<body class="layout-light side-menu">
+    <div class="mobile-search">
+        <form action="/" class="search-form">
+            <img src="{% static 'img/svg/search.svg' %}" alt="search" class="svg">
+            <input class="form-control me-sm-2 box-shadow-none" type="search" placeholder="Search..." aria-label="Search">
+        </form>
+    </div>
+    <div class="mobile-author-actions"></div>
+    <header class="header-top">
+        {% include 'partials/_top_nav.html' %}
+    </header>
+    <main class="main-content">
+        <aside class="sidebar-wrapper">
+            <div class="sidebar">
+                {% include 'partials/_menu.html' %}
+            </div>
+        </aside>
+        <div class="contents">
+            {% block content %}
+            {% endblock %}
+        </div>
+        <footer class="footer-wrapper">
+            {% include 'partials/_footer.html' %}
+        </footer>
+    </main>
+    <div id="overlayer">
+        <span class="loader-overlay">
+            <div class="dm-spin-dots spin-lg">
+                <span class="spin-dot badge-dot dot-primary"></span>
+                <span class="spin-dot badge-dot dot-primary"></span>
+                <span class="spin-dot badge-dot dot-primary"></span>
+                <span class="spin-dot badge-dot dot-primary"></span>
+            </div>
+        </span>
+    </div>
+    <div class="overlay-dark-sidebar"></div>
+
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDduF2tLXicDEPDMAtC6-NLOekX0A5vlnY"></script>
+    <script src="{% static 'js/env.js' %}"></script>
+
+    {% include 'partials/_scripts.html' %}
+</body>
+</html>

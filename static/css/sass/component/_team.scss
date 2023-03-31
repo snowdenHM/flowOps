@@ -1,0 +1,80 @@
+.team-members{
+    ul{
+        padding: 0;
+        margin: 0;
+        li{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            &:not(:last-child){
+                margin-bottom: 20px;
+            }
+            .team-members__left{
+                display: flex;
+                align-items: center;
+                flex: 8;
+                img{
+                    width: 34px;
+                    height: 34px;
+                    border-radius: 5px;
+                    + .team-members__title{
+                        margin-left: 12px;
+                    }
+                }
+                .team-members__title{
+                    h6{
+                        font-size: 15px;
+                        font-weight: 500;
+                        color: var(--color-gray);
+                    }
+                    .team-members__title--online{
+                        display: flex;
+                        align-items: center;
+                        font-size: 12px;
+                        font-weight: 400;
+                        color: var(--color-gray);
+                        span{
+                            margin-right: 5px;
+                        }
+                    }
+                }
+            }
+            .team-members__middle{
+                flex: 5;
+                .team-members__title--online{
+                    font-size: 15px;
+                    font-weight: 400;
+                    color: var(--color-light);
+                    .badge-dot{
+                        margin-right: 6px;
+                    }
+                }
+            }
+            .team-member__right{
+                .team-member__add{
+                    button{
+                        background-color: rgba(var(--color-primary-rgba), .10);
+                        border-radius: 3px;
+                        color: var(--color-primary);
+                        font-size: 13px;
+                        font-weight:600;
+                        height: 32px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        box-shadow: none;
+                        outline: none;
+                        border: none;
+                        padding: 0 12px;
+                        text-transform: capitalize;
+                        transition: 0.3s ease-in-out;
+                        &:hover{
+                            background-color: var(--color-primary);
+                            color: var(--color-white);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

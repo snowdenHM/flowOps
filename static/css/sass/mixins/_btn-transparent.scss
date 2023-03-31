@@ -1,0 +1,8 @@
+@import "../../../vendor_assets/css/bootstrap/config.bs";
+
+@each  $key, $color in ($theme-colors) {
+  .btn-transparent-#{$key} {
+    background: transparentize($color,.85);
+    color: $color;
+  }
+}

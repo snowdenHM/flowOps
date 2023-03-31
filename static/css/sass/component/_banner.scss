@@ -1,0 +1,656 @@
+/* Banner Feature */
+
+.banner-feature {
+    z-index: 1;
+    overflow: hidden;
+
+    img,
+    svg {
+        max-width: 100%;
+    }
+
+    @include media-breakpoint-up(md) {
+        min-height: 270px;
+        max-height: 100%;
+    }
+
+    .card-body {
+        padding: 43px 30px 40px 30px;
+    }
+
+    @include e(heading) {
+        line-height: lh(30, 38);
+    }
+
+    @include e(para) {
+        @include ofs(16px, lh(16px, 27px), 400);
+        margin: 19px 0 21px 0;
+    }
+
+    @include e(btn) {
+        text-transform: capitalize;
+    }
+
+    .banner-feature__shape {
+        @include xl {
+            img {
+                width: 100%;
+            }
+        }
+    }
+
+    &--2 {
+        background-color: var(--color-primary);
+
+        .banner-feature__shape {
+            position: absolute;
+            bottom: 22px;
+            right: 16px;
+            z-index: -1;
+        }
+
+        .card-body {
+            padding: 55px 30px 55px 30px;
+        }
+
+        .banner-feature__para {
+            margin: 15px 0 36px 0;
+        }
+    }
+
+    &--3 {
+        background-color: var(--color-info);
+
+        .banner-feature__shape {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            z-index: -1;
+
+            @include ssm {
+                position: static;
+                display: flex;
+                justify-content: center;
+
+                img {
+                    max-width: 180px;
+                }
+            }
+        }
+
+        .card-body {
+            padding: 47px 30px 30px 30px;
+
+            @include ssm {
+                display: flex;
+                justify-content: center;
+                text-align: center;
+                flex-direction: column;
+            }
+        }
+
+        .banner-feature__para {
+            margin: 15px 0 36px 0;
+        }
+    }
+
+    &--4 {
+        background-color: var(--color-dark);
+
+        .banner-feature__shape {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            z-index: -1;
+
+            @include ssm {
+                img {
+                    max-width: 120px;
+                }
+            }
+        }
+
+        .card-body {
+            padding: 29px 30px 30px 30px;
+        }
+
+        .banner-feature__para {
+            margin: 17px 0 17px 0;
+        }
+    }
+
+    &--danial {
+        background-color: var(--color-dark);
+
+        @include minXl {
+            min-height: 360px;
+        }
+
+        .banner-feature__shape {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            z-index: -1;
+
+            @include ssm {
+                img {
+                    max-width: 150px;
+                }
+            }
+        }
+
+        .card-body {
+            padding: 55px 30px 55px 30px;
+        }
+
+        .banner-feature__para {
+            margin: 14px 0 22px 0;
+            font-size: 16px;
+            color: rgba(var(--color-white-rgba), 0.90);
+        }
+
+        .banner-feature__btn {
+            background-color: var(--bg-gray);
+            height: 44px;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--color-white);
+
+            &:hover {
+                opacity: 0.7;
+            }
+        }
+    }
+
+    &--5 {
+        background-image: linear-gradient(to right top, #5840ff, #0082ff, #00aaff, #00caff, #00e4ec);
+
+        .banner-feature__shape {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            z-index: -1;
+
+            @include ssm {
+                img {
+                    max-width: 150px;
+                }
+            }
+        }
+
+        .card-body {
+            padding: 55px 30px 55px 30px;
+        }
+
+        .banner-feature__para {
+            margin: 14px 0 22px 0;
+            color: rgba(var(--color-white-rgba), 0.70);
+        }
+
+        .banner-feature__btn {
+            &:hover {
+                color: var(--color-dark);
+            }
+        }
+    }
+
+    &--6 {
+        background-image: url("img/rectangle381.png");
+        background-size: cover;
+        background-position: center center;
+
+        .card-body {
+            padding: 55px 30px 55px 30px;
+        }
+
+        .banner-feature__para {
+            margin: 14px 0 18px 0;
+            color: rgba(var(--color-white-rgba), 0.70);
+        }
+
+        .banner-feature__heading {
+            margin: 19px 0 18px 0;
+        }
+
+    }
+
+    &--7 {
+        margin-bottom: 0;
+        justify-content: center;
+
+        @include media-breakpoint-up(md) {
+            min-height: 160px;
+            max-height: 100%;
+        }
+
+        .card-body {
+            padding: 40px 30px 40px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .banner-feature__para {
+            margin: 5px 0 0 0;
+            color: var(--color-gray);
+        }
+
+        .banner-feature__heading {
+            text-transform: capitalize;
+        }
+
+        .banner-feature__shape {
+
+            &.position-absolute {
+                right: 0;
+                top: 50%;
+                transform: translate(0, -50%);
+                z-index: -1;
+
+                @include ssm {
+                    opacity: 0.3;
+                }
+            }
+        }
+
+        button {
+            height: 38px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+    }
+
+    &--77 {
+        margin-bottom: 0;
+        justify-content: center;
+
+        @include media-breakpoint-up(md) {
+            max-height: 100%;
+        }
+
+        .card-body {
+            padding: 40px 30px 40px 0;
+            display: flex;
+        }
+
+        .banner-feature__para {
+            margin: 14px 0 18px 0;
+            color: var(--color-gray);
+        }
+
+    }
+
+    &--8 {
+
+        background-color: var(--color-primary);
+        text-align: center;
+
+        .slick-slider {
+            outline: none;
+            border: none;
+            box-shadow: none;
+
+            &:focus {
+                border: none;
+                outline: none;
+                box-shadow: none;
+            }
+
+            .slick-track {
+                outline: none;
+            }
+
+            .slick-slide {
+                outline: none;
+            }
+        }
+
+        .card-body {
+            padding: 60px 20px 64px 20px;
+        }
+
+        .banner-feature__shape {
+            width: 100%;
+        }
+
+        .banner-feature__para {
+            margin: 19px 0 60px 0;
+            color: rgba(var(--color-white-rgba), 0.70);
+        }
+
+        .slick-slider .slick-dots button {
+            width: 5px;
+            height: 5px;
+        }
+
+        .slick-slider .slick-dots li.slick-active button {
+            width: 5px;
+            background: var(--color-white);
+        }
+
+        .slick-slider.slick-dots-bottom .slick-dots {
+            margin: 0 0 70px;
+        }
+    }
+
+    &--9 {
+        .card-body {
+            text-align: center;
+            padding: 37px 0 25px 0;
+        }
+    }
+
+    &--10 {
+        min-height: 450px;
+        max-height: 100%;
+        z-index: 1;
+        background-color: var(--color-warning);
+
+        @include ssm {
+            min-height: 280px;
+        }
+
+        .banner-feature__shape {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            z-index: -1;
+            /*rtl:ignore*/
+            padding-left: 40px;
+
+            /*rtl:ignore*/
+            img {
+                @include xl {
+                    width: 100%;
+                }
+            }
+        }
+
+        .card-body {
+            padding: 39px 25px 44px 40px;
+        }
+
+        .banner-feature__btn {
+            margin-top: 25px;
+        }
+    }
+
+    &--11 {
+        min-height: 450px;
+        max-height: 100%;
+        z-index: 1;
+        overflow: hidden;
+        background-color: var(--color-danger);
+
+        .banner-feature__shape {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            z-index: -1;
+
+            img {
+                @include xl {
+                    width: 100%;
+                }
+            }
+        }
+
+        .card-body {
+            padding: 39px 25px 44px 40px;
+        }
+
+        .banner-feature__para {
+            color: rgba(var(--color-white-rgba), 0.70);
+            margin: 17px 0 18px 0;
+        }
+    }
+
+    &--12 {
+        min-height: 223px;
+        max-height: 100%;
+        overflow: hidden;
+        background-color: rgba(var(--color-warning-rgba), 0.30);
+
+        .banner-feature__shape {
+            @include ssm() {
+                width: 100%;
+            }
+
+            @include xl {
+                img {
+                    width: 100%;
+                }
+            }
+        }
+
+        .card-body {
+            padding: 0 25px;
+        }
+    }
+
+    &--13 {
+        min-height: 223px;
+        max-height: 100%;
+        overflow: hidden;
+        background-color: var(--color-info);
+
+        .banner-feature__para {
+            color: rgba(var(--color-dark-rgba), 0.70);
+            margin: 15px 0 16px 0;
+        }
+
+        .banner-feature__shape {
+            max-width: unset;
+
+            @include ssm() {
+                width: 100%;
+            }
+
+            @include xl {
+                img {
+                    width: 100%;
+                }
+            }
+        }
+
+        .card-body {
+            padding: 30px 15px 30px 30px;
+        }
+    }
+
+    &--14 {
+        background: var(--bg-white);
+
+        h1 {
+            line-height: lh(30px, 36px);
+            margin-bottom: 17px;
+        }
+
+        p {
+            @include ofs(15px, lh(15px, 25px), 400);
+            color: var(--color-gray-x);
+            margin-bottom: 30px;
+        }
+
+        button {
+            height: 46px;
+            @extend .content-center;
+            @include ofs(14px, lh(14px, 20px), 500);
+            box-shadow: 0 5px 10px rgba(var(--color-secondary-rgba), 0.15);
+            padding: 10px 20px;
+        }
+
+        .card-body {
+            padding: 0;
+
+            @include sm {
+                padding: 1rem;
+            }
+        }
+    }
+
+    &--15 {
+        border-radius: 6px;
+        padding: 30px;
+        transition: var(--transition);
+        border: 1px solid var(--border-color);
+
+        &:hover {
+            box-shadow: 0 15px 25px rgba(var(--color-lighten-rgba), 0.15);
+            border: 1px solid transparent;
+        }
+
+        h4 {
+            line-height: lh(20px, 24px);
+            font-weight: 500;
+            margin-top: 27px;
+        }
+
+        p {
+            @include ofs(15px, lh(15px, 25px), 400);
+            color: var(--color-gray-x);
+            margin-top: 20px;
+            margin-bottom: 0;
+        }
+
+        button {
+            height: 40px;
+            @extend .content-center;
+            padding: 0 30px;
+        }
+    }
+
+    &--16 {
+        padding: 100px 0 0 0;
+
+        @include sm {
+            padding: 50px 0 0 0;
+        }
+    }
+
+    &--17 {
+        margin-top: 85px;
+
+        @include xs {
+            margin-top: 30px;
+        }
+
+        .card-header {
+            h4 {
+                white-space: normal;
+            }
+        }
+
+        @include xs {
+            .application-faqs .panel-title>a:before {
+                right: -15px;
+            }
+        }
+    }
+
+    &--18 {
+        background-color:#090E30 ;
+        &.new {
+            justify-content: center;
+            min-height: auto;
+
+            .card-body{
+                flex: 2;
+                padding: 40px;
+            }
+
+            .banner-feature__shape {
+                img {
+                    height: 100%;
+                    max-height: 100%;
+                }
+            }
+
+            .banner-feature__btn {
+                min-height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 15px;
+                font-weight: 600;
+                padding: 0 25px;
+
+                @include ssm {
+                    min-height: 40px;
+                }
+            }
+
+            .card-body {
+                @include ssm {
+                    text-align: center;
+                }
+            }
+        }
+
+        justify-content: center;
+        min-height: 290px;
+
+        .banner-feature__shape {
+            img {
+                height: 215px;
+                max-height: 215px;
+                object-fit: cover;
+
+                @include xs {
+                    object-fit: contain;
+                }
+            }
+        }
+
+        .banner-feature__btn {
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            font-weight: 600;
+
+            @include ssm {
+                min-height: 40px;
+            }
+        }
+
+        .card-body {
+            @include ssm {
+                text-align: center;
+            }
+        }
+    }
+}
+
+.banner-feature__shape {
+
+    img,
+    svg {
+        max-width: 100%;
+    }
+}
+
+.demo4 {
+    .banner-feature--5 {
+        min-height: 360px;
+    }
+}
+
+/* Products Awards */
+.products-awards {
+    .revenue-chart-box__Icon {
+        margin-right: 0;
+
+        i {
+            color: currentColor;
+        }
+    }
+
+    p {
+        font-size: 15px;
+        color: var(--color-gray);
+        margin-top: 11px;
+    }
+}

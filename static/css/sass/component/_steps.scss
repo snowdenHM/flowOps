@@ -1,0 +1,88 @@
+// atbs-steps
+.dm-steps{
+    .nav{
+        @include ssm{
+            flex-flow: column;
+        }
+    }
+    @include e("item"){
+        position: relative;
+        flex: 1;
+        z-index: 10;
+        @include ssm{
+            &:not(:last-child){
+                margin-bottom: 15px;
+            }
+        }
+        &:last-child{
+            flex: none;
+            padding-right: 0;
+        }
+        &:first-child{
+            padding-left: 0;
+        }
+        &.finished{
+            .dm-steps__icon{
+                color:var(--color-primary);
+                border:1px solid var(--color-primary);
+            }
+            .dm-steps__line{
+                background-color: var(--color-primary);
+            }
+        }
+        &.active{
+            .dm-steps__icon{
+                color:var(--color-white);
+                border:1px solid var(--color-primary);
+                background-color: var(--color-primary);
+            }
+            .dm-steps__line{
+                background-color: var(--color-primary);
+            }
+        }
+    }
+    @include e("content"){
+        padding: 0 10px;
+        width: fit-content;
+        display: flex;
+        align-items: center;
+        position: relative;
+        background-color:var(--color-white);
+    }
+    @include e("line"){
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+        background-color: var(--border-light);
+        z-index: -1;
+        @include ssm{
+            transform: translate(0,0);
+            top: 30px;
+            left: 25px;
+            height: 100%;
+            width: 1px;
+        }
+    }
+    @include e("icon"){
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-width: 1px;
+        border-style: solid;
+        border:1px solid var(--border-light);
+        color:var(--color-lighten);
+    }
+    @include e("text"){
+        font-weight: 500;
+        display: inline-block;
+        margin-left: 10px;
+        color: var(--color-dark);
+    }
+}

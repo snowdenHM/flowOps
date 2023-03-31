@@ -1,0 +1,405 @@
+// this file contains the configuration
+// for customizing bootstrap,
+// and other theme components
+
+@import "scss/functions";
+@import "scss/mixins";
+@import "scss/variables";
+
+$dark-mode: true;
+
+
+//Radius
+
+$border-radius-xl: 10px;
+$border-radius-lg:            .3rem;
+$border-radius-md: 6px;
+$border-radius-sm:            .2rem;
+$border-radius-xs: 4px;
+$border-radius:               .25rem;
+
+
+$rounded-pill:                50rem !default;
+
+$gray:            #404040; //var(--color-gray)
+$text-color:     #666d92; //var(--text-color)
+$light-gray:      #8C90A4; //var(--color-light)
+$light:$light-gray;
+
+//btn color
+
+$body-color:      var(--body-color);
+$text-light: #747474;
+$text-grey1: #404040;
+$text-grey2: #A0A0A0;
+$text-grey3: #5A5F7D;
+$footer-dark: #353b58;
+
+// theme color
+
+$primary:         #8231D3;
+$secondary:       #5840FF;
+$success:         #01B81A;
+$info:            #00AAFF;
+$warning:         #FA8B0C;
+$danger:          #FF0F0F;
+$dark:            #0A0A0A;
+
+$infos:#00E4EC;
+$warnings:#FFBB00;
+$dangers: #FF0F0F;
+$purple:#A722F6;
+
+$third:$primary;
+$theme-colors: ();
+
+$theme-colors: map-merge(("primary": $primary,
+    "secondary": $secondary,
+    "success": $success,
+    "info": $info,
+    "infos": $infos,
+    "warning": $warning,
+    "warnings": $warnings,
+    "danger": $danger,
+    "dangers": $dangers,
+    "purple": $purple,
+    "dark": $dark,
+    "light": $light,
+    "lighten": $text-grey2,
+    "light-gray": $light-gray,
+    "text": $text-color,
+    "gray": $gray,
+    "third": $third,
+    "white": #ffffff,
+  ),
+  $theme-colors);
+
+// style-lint-disable
+$gray-100: #c9cfe4;
+$white: var(--color-white);
+$black:var(--color-dark);
+
+// other colors, these are the colors
+// that has been used in different part of ui exceptionally
+
+$other-colors: ("footer-dark": $footer-dark,
+);
+
+$hover-colors: ("primary": #6726A8,
+  "secondary": #3520C8,
+  "success": #0D811D,
+  "info": #0787C7,
+  "warning": #D9790A,
+  "danger": #CB0000,
+  "dark": #272525,
+  "gray": #585858
+);
+
+// border color
+$border-color: var(--border-color);
+$border-light:var(--border-light);
+$border-deep: var(--border-deep);
+
+$border-colors: ("normal": $border-color,
+  "deep": $border-light,
+  "color": $border-deep,
+);
+
+// background Color
+$bg-normal: var(--bg-normal);
+$bg-lighters: var(--bg-lighters);
+$bg-deep: var(--bg-deep);
+$table-color:var(--color-dark);
+
+$bg-colors: ("normal": $bg-normal,
+  "lighter": $bg-lighters,
+  "deep": $bg-deep,
+);
+
+// stylelint-disable-next-line scss/dollar-variable-default
+$spacers: map-merge((0: 0,
+    1: ($spacer * .25),
+    2: ($spacer * .5),
+    3: $spacer,
+    4: ($spacer * 1.5),
+    5: ($spacer * 3),
+    10:($spacer * .625),
+    15:($spacer * .9375),
+    20:($spacer * 1.25),
+    25:($spacer * 1.5625),
+    30:($spacer * 1.875),
+    35:($spacer * 2.18753),
+    40:($spacer * 2.5),
+    45:($spacer * 2.8125),
+    50:($spacer * 3.125)),
+  $spacers);
+
+
+// Grid points
+$grid-breakpoints: (xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl:1600px);
+//social colors
+$facebook: #2366b8;
+$twitter: #00abe4;
+$pinterest: #ef1b25;
+$gplus: #dc4e41;
+$linkedin: #007cbc;
+$tumblr: #35465c;
+$vk: #4a76a8;
+$youtube: #e32212;
+$instagram: #9c27b0;
+$ruby: #c2185b;
+
+$social-colors: ();
+
+// stylelint disabled
+$social-colors: map-merge(("facebook": $facebook,
+    "twitter": $twitter,
+    "pinterest": $pinterest,
+    "gplus": $gplus,
+    "linkedin": $linkedin,
+    "tumblr": $tumblr,
+    "vk": $vk,
+    "youtube": $youtube,
+    "ruby": $ruby,
+    "instagram": $instagram,
+  ),
+  $social-colors);
+
+// global setting override
+$enable-caret: false;
+$enable-shadows: true;
+
+// shadows
+$box-shadow-color: var(--color-gray);
+$box-shadow: 0 0.67rem 0.67rem rgba($box-shadow-color, 0.08);
+$box-shadow-lg: 0 0.67rem 0.67rem rgba($box-shadow-color, 0.1);
+
+// font
+$font-size-base: 1rem;
+$font-family-base: 'Jost', sans-serif;
+
+// display text
+$display1-size: 3rem; // 48px
+$display2-size: 2.5rem; // 40px
+$display3-size: 2.25rem; // 36px
+$display4-size: 1.875rem; // 30px
+$display-font-sizes: (
+  1: $display1-size,
+  2: $display2-size,
+  3: $display3-size,
+  4: $display4-size
+);
+
+$display-font-weight: 500;
+
+// btn
+$btn-font-weight: 500;
+$btn-font-size: 14px;
+$btn-line-height: 2.65rem;
+$btn-box-shadow: none;
+$btn-padding-y:0;
+$btn-padding-x:20px;
+$btn-border-radius:4px;
+
+// leading text
+$lead-font-size: ($font-size-base * 1.33);
+$lead-font-weight: 400;
+$lead-medium-font-size: ($font-size-base * 1.6);
+$lead-medium-font-weight: 500;
+
+// link
+$link-color: var(--color-primary);
+$link-hover-decoration: none;
+$link-decoration:none;
+
+// Input
+$input-disabled-bg: var(--color-lighter);
+$input-bg: var(--input-bg);
+$input-color:var(--color-dark);
+$input-focus-bg:var(--input-focus-bg);
+$input-focus-color:var(--color-dark);
+$form-check-input-focus-box-shadow:none;
+
+
+// navbar
+$navbar-padding-y: 1.0313rem;
+$navbar-padding-x: 2rem;
+
+//light
+$navbar-light-color: #202428;
+$navbar-light-hover-color: var(--color-primary);
+$navbar-light-active-color: var(--color-primary);
+
+
+// Progress
+$progress-bg:var(--bg-deep);
+// dark
+$navbar-dark-color: rgba(var(--color-white-rgba), 0.7);
+$navbar-dark-hover-color: var(--color-white);
+
+// section bg
+$section-bg: var(--bg-lighter);
+$section-bg2: var(--bg-normal);
+
+//breadcrumb
+$breadcrumb-area-bg: $section-bg;
+$breadcrumb-padding-y: 0;
+$breadcrumb-padding-x: 0;
+$breadcrumb-item-padding: 0.5rem;
+$breadcrumb-margin-bottom: 0;
+$breadcrumb-bg: none;
+$breadcrumb-divider-color: $light;
+$breadcrumb-active-color: $gray-100;
+$breadcrumb-divider: quote("\f112");
+
+// Cards
+$card-border-color: var(--border-color);
+$card-border-radius: 10px;
+$card-cap-bg: var(--color-white);
+$card-spacer-x: 1.56rem;
+$card-bg:var(--bg-white);
+
+//Pagination
+$pagination-padding-y: 0.8rem;
+$pagination-padding-x: 1rem;
+
+// Dropdown
+
+$dropdown-border-width:0;
+
+//Headings Font Sizes
+$h1-font-size: 1.875rem; //30px
+$h2-font-size: 1.5rem; //24px
+$h3-font-size: 1.375rem; //22px
+$h4-font-size: 1.25rem; //20px
+$h5-font-size: 1.125rem; //18px
+$h6-font-size: 1rem; //16px
+$headings-margin-bottom: 0;
+$headings-color: var(--color-dark);
+$headings-font-weight: 600;
+
+$headings-font-family:'Jost', sans-serif;
+
+// alerts
+$alert-bg-level: -10.66;
+$alert-border-level: -10.66;
+$alert-color-level: 0;
+$alert-padding-y: 0.659rem;
+$alert-padding-x: 1.2rem;
+$alert-margin-bottom: 15px;
+$alert-border-radius: 5px;
+
+//progress bars
+$progress-height: 0.54rem;
+$border-radius: 5px;
+$btn-border-radius: $border-radius;
+$border-radius-lg: 6px;
+
+// Switches
+$custom-switch-width: 2.5rem;
+$custom-control-indicator-size: 1.375rem;
+$custom-switch-indicator-size: calc(1.375rem - 8px);
+$custom-switch-indicator-border-radius: 10px;
+
+// Checkbox
+$custom-checkbox-indicator-indeterminate-bg: var(--color-primary);
+
+// Popover
+$popover-max-width: 235px;
+$zindex-popover: 9998;
+$popover-border-width:0px;
+
+//Rfs
+$enable-rfs: true;
+$rfs-base-value: 16;
+$rfs-rem-value:16;
+$rfs-unit: px;
+
+//form elements
+$input-font-size: 14px;
+$input-font-size-lg: 15px;
+$input-font-size-sm: 12px;
+$input-height: 2.625rem;
+$input-height-lg: 3.125rem;
+$input-height-sm: 1.875rem;
+$input-padding-x: 1.2rem;
+$form-text-margin-top: 0.66rem;
+$input-border-radius: 5px;
+$input-border-color: var(--border-light);
+$input-box-shadow: 0 0;
+
+// tabs
+$nav-link-padding-y: 10px;
+$nav-link-padding-x: 12px;
+$nav-tabs-border-radius: 0;
+$nav-tabs-border-width:0px;
+$nav-tabs-link-active-color: var(--color-primary);
+$nav-tabs-link-active-bg: var(--color-white);
+
+$nav-pills-border-radius: 13.33rem;
+$nav-pills-link-active-color: $component-active-color;
+$nav-pills-link-active-bg:var(--color-primary);
+
+//table
+$table-border-color: var(--border-color);
+
+//transition
+$transition-base: all 0.3s ease;
+
+//hr
+$hr-margin-y: 4.67rem;
+$hr-border-color: var(--border-color);
+
+//badges
+$badge-padding-y: 4.5px;
+$badge-padding-x: 6.58px;
+$badge-font-size: 10px;
+$badge-font-weight: 600;
+$badge-border-radius: 10px;
+$badge-pill-padding-x: 6.6px;
+$input-focus-border-color:var(--color-primary);
+$input-focus-box-shadow:0px 5px 20px #5F63F21A;
+
+// Progress-bar
+$progress-height: 8px;
+$progress-box-shadow: 0 0;
+$progress-bg: var(--bg-deep);
+$progress-border-radius: 10px;
+
+//modal
+$modal-md: 620px;
+$modal-sm: 450px;
+
+$modal-inner-padding: 1.75rem;
+$modal-header-padding: 1.125rem 1.75rem;
+$modal-header-border-color: var(--border-color);
+$modal-footer-border-color: var(--border-color);
+$zindex-modal-backdrop: 9998;
+$zindex-modal: 9999;
+$modal-content-box-shadow-sm-up: 0 3px 6px -4px rgba(var(--color-dark-rgba), 0.12),
+0 6px 16px 0 rgba(var(--color-dark-rgba), 0.08),
+0 9px 28px 8px rgba(var(--color-dark-rgba), 0.05);
+$modal-content-border-radius: 4px;
+$modal-content-border-width:0;
+
+// Tooltip
+$tooltip-font-size: 14px;
+$tooltip-color: var(--color-gray);
+$tooltip-bg: var(--tooltip-bg);
+$tooltip-arrow-color: var(--tooltip-arrow-color);
+$tooltip-padding-y: 0.41rem;
+$tooltip-padding-x: 1.165rem;
+
+
+//form
+$label-margin-bottom: 10px;
+$form-group-margin-bottom:25px;
+
+/* Custom bootstrap classes */
+$enable-negative-margins: true;
+@import "scss/variables";

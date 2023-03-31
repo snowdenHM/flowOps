@@ -1,0 +1,25 @@
+// List Box
+.list-box{
+    @include e("item"){
+        font-size: 14px;
+        padding: 12px 20px;
+        border-left: 1px solid var(--border-color);
+        border-right: 1px solid var(--border-color);
+        color:var(--color-gray);
+        &:not(:last-child){
+            border-bottom: 1px solid var(--border-color);
+        }
+        &:last-child{
+            border-radius: 0 0 5px 5px;
+            border-bottom: 1px solid var(--border-light);
+            border-left: 1px solid var(--border-light);
+            border-right: 1px solid var(--border-light);
+        }
+        &:first-child{
+            border-radius: 5px 5px 0 0;
+            border-top: 1px solid var(--border-light);
+            border-left: 1px solid var(--border-light);
+            border-right: 1px solid var(--border-light);
+        }
+    }
+}

@@ -1,0 +1,83 @@
+// Pagination Css
+.dm-pagination {
+    @include xs {
+        flex-flow: column;
+        align-items: center;
+    }
+
+    @include e("item") {
+        margin: -2px;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+
+        &:not(:last-child) {
+            margin-right: 20px;
+
+            @include xs {
+                margin: 0 0 15px 0;
+            }
+        }
+        .paging-option{
+            position: relative;
+            &:after {
+                content: "\f107";
+                font-family: 'Line Awesome Free';
+                font-weight: 900;
+                position: absolute;
+                top: 50%;
+                right: 12px;
+                transform: translate(-50%, -50%);
+                color:var(--color-light);
+                font-size:12px;
+                pointer-events: none;
+            }
+        }
+
+        .page-selection {
+            border-radius: 4px;
+            font-size: 13px;
+            height: 32px;
+            padding: 4.5px 13px;
+            color:var(--color-gray);
+            border:1px solid var(--border-color);
+            appearance: none;
+            margin:2px;
+            min-width:103px;
+            background-color: var(--color-white);
+        }
+    }
+
+    @include e("link") {
+        min-height: 32px;
+        font-size: 14px;
+        border-radius: 4px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4.5px 11.75px;
+        border-width: 1px;
+        border-style: solid;
+        background-color: var(--color-white);
+        margin: 2.5px;
+        border:1px solid var(--border-color);
+        color:var(--color-gray);
+        line-height: normal;
+
+        &.pagination-control {
+            width: 32px;
+            height: 32px;
+            color:var(--color-light);
+
+            span {
+                font-size: 12px;
+            }
+        }
+
+        &:hover,
+        &.active {
+            background-color: var(--color-primary);
+            color:var(--color-white);
+        }
+    }
+}

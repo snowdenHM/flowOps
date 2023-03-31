@@ -1,0 +1,34 @@
+// Column Card Wrapper 
+
+.columnCard-wrapper{
+    padding: 50px 30px 30px;
+    border-radius: 4px;
+    background-color: var(--bg-normal);
+    @include ssm{
+        padding: 40px 20px 30px;
+    }
+    .card{
+        .card-header{
+            border-bottom: 1px solid var(--border-color);
+        }
+    }
+}
+
+// Grid Card Wrapper 
+
+.columnGrid-wrapper{
+    .card{
+        .card-body{
+            padding: 0;
+            table{
+                margin: 0;
+            }
+        }
+    }
+}
+
+// Media
+.media {
+    display: flex;
+    align-items: flex-start;
+  }

@@ -1,0 +1,132 @@
+// generates theming classes based on theme color from $theme-colors map in bootstrap 
+@each  $key, $color in ($theme-colors) {
+  .color-#{$key}{
+    color: var(--color-#{$key});
+  }
+  .bg-#{$key} {
+    background: var(--bg-#{$key}) !important;
+  }
+  .outline-#{$key}{
+    border: 1px solid var(--color-#{$key});
+    color: var(--color-#{$key});
+  }
+  .btn-outline-#{$key}{
+    border: 1px solid var(--color-#{$key});
+    color: var(--color-#{$key});
+    &:hover{
+      background-color: var(--color-#{$key});
+      border-color: var(--color-#{$key});
+    }
+  }
+  .active-color-#{$key}{
+    label input:checked + span {
+      background: var(--color-#{$key});
+      border-color: var(--color-#{$key});
+    }
+  }
+  .badge-#{$key}{
+    color: var(--color-white);
+    background: var(--color-#{$key});
+  }
+
+  .alert-#{$key}{
+    color: var(--color-#{$key});
+    background-color: rgba(var(--color-#{$key}-rgba), 0.1);
+    border: 1px solid rgba(var(--color-#{$key}-rgba), 0.1);
+  }
+
+  .btn-#{$key}{
+    color: var(--color-white);
+    background-color: var(--color-#{$key});
+    border-color: var(--color-#{$key});
+  }
+
+  //generate bg with opacity and and text color
+  .circle-#{$key}{
+    color: var(--color-#{$key}) ;
+    background: rgba(var(--color-#{$key}-rgba), 0.1);
+  }
+
+  //generate border color
+  .border-#{$key}{
+    border: 1px solid var(--color-#{$key});
+  }
+  .bg-opacity-#{$key}-20{
+    background: rgba(var(--color-#{$key}-rgba), 0.20);
+  }
+  .bg-opacity-#{$key}{
+    background: rgba(var(--color-#{$key}-rgba), 0.15);
+  }
+  .order-bg-opacity-#{$key}{
+    background: rgba(var(--color-#{$key}-rgba), 0.10);
+    svg{
+      fill: var(--color-#{$key});
+    }
+  }
+  // data-feather icon
+  .color-svgDF-#{$key}{
+    svg{
+      color: var(--color-#{$key});
+    }
+  }
+  .form-switch-#{$key}{
+    .form-check-input{
+      &:checked{
+        background-color: var(--color-#{$key});
+        border-color: var(--color-#{$key});
+      }
+      &:focus{
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+// generating classes based on other colors used in the theme
+@each  $key, $color in ($other-colors) {
+  .color-#{$key}{
+    color: var(--color-#{$key});
+  }
+  .bg-#{$key} {
+    background: var(--bg-#{$key});
+  }
+  .border-#{$key} {
+    border-color: var(--color-#{$key});
+  }
+}
+
+// generating classes based on border colors used in the theme
+@each  $key, $color in ($border-colors) {
+  .border-#{$key} {
+    border:1px solid var(--color-#{$key});
+  }
+}
+
+// generating classes based on bg colors used in the theme
+@each  $key, $color in ($bg-colors) {
+  .bg-#{$key} {
+    background: var(--bg-#{$key});
+  }
+}
+
+//generate social colors
+@each $key, $color in ($social-colors){
+  .color-#{$key}{
+    color: var(--color-#{$key});
+  }
+  .bg-#{$key}{
+    background:var(--color-#{$key});
+  }
+  .border-#{$key}{
+    border:1px solid var(--color-#{$key});
+  }
+  .order-bg-opacity-#{$key}{
+    background: rgba(var(--color-#{$key}-rgba), 0.10);
+    svg{
+      fill: var(--color-#{$key});
+    }
+    i{
+      color: var(--color-#{$key});
+    }
+  }
+}

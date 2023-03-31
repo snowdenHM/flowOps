@@ -1,0 +1,41 @@
+// Drag-drop List
+.drag-drop-wrap {
+  margin: 20px 0;
+  .item {
+    min-width: 200px;
+    svg,
+    img,
+    i {
+      color:var(--color-lighten);
+    }
+  }
+  .item-info {
+    margin-left: 30px;
+  }
+  .item_title {
+    h6 {
+      margin-left: 12px;
+      font-size: 14px;
+      a {
+        color: var(--color-dark);
+      }
+    }
+  }
+  .drag-drop {
+    table {
+      tr {
+        cursor: move;
+      }
+      &.table-basic {
+        tr {
+          td{
+            background-color: transparent;
+          }
+        }
+      }
+    }
+  }
+  .date {
+    min-width: 150px;
+  }
+}

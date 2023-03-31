@@ -1,0 +1,221 @@
+{% load i18n %} {% load static %} {% with request.resolver_match.url_name as path_name %}
+
+    <nav class="navbar navbar-light">
+        <div class="navbar-left">
+            <div class="logo-area">
+                <a class="navbar-brand" href="{% url 'dashboard:main' %}">
+                    <img class="dark" src="{% static 'img/flowOps.png' %}" alt="svg"/>
+                    <img class="light" src="{% static 'img/flowOps.png' %}" alt="img"/>
+                </a>
+                <a href="#" class="sidebar-toggle">
+                    <img class="svg" src="{% static 'img/svg/align-center-alt.svg' %}" alt="img"/></a>
+            </div>
+            <div class="top-menu">
+                <div class="hexadash-top-menu position-relative">
+                    <ul>
+                        <li class="has-subMenu">
+                            <a href="#" class="{% if '/dashboard/' in request.path %}active{% endif %}">
+                                <span class="menu-text">{% translate "dashboard-menu-title" %}</span>
+                            </a>
+                            <ul class="subMenu">
+                                <li>
+                                    <a class="{% if path_name == 'main' %}active{% endif %}"
+                                       href="{% url 'dashboard:main' %}">{% translate "dashboard-demo-one" %}</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class="has-subMenu">
+                            <a href="#" class="">Layouts</a>
+                            <ul class="subMenu">
+                                <li class="l_sidebar">
+                                    <a href="#" data-layout="light">Light Mode</a>
+                                </li>
+                                <li class="l_sidebar">
+                                    <a href="#" data-layout="dark">Dark Mode</a>
+                                </li>
+                                <li class="l_navbar">
+                                    <a href="#" data-layout="side">Side Menu</a>
+                                </li>
+                                <li class="layout">
+
+                                    <a href="#">RTL</a>
+
+                                </li>
+                                <li class="layout">
+
+                                    <a href="#">LTR</a>
+
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="navbar-right">
+            <ul class="navbar-right__menu">
+
+                <li class="nav-notification">
+                    <div class="dropdown-custom">
+                        <a href="javascript" class="nav-item-toggle icon-active">
+                            <img class="svg" src="{% static 'img/svg/alarm.svg' %}" alt="img"/>
+                        </a>
+                        <div class="dropdown-parent-wrapper">
+                            <div class="dropdown-wrapper">
+                                <h2 class="dropdown-wrapper__title">
+                                    Notifications
+                                    <span class="badge-circle badge-warning ms-1">4</span>
+                                </h2>
+                                <ul>
+                                    <li class="nav-notification__single nav-notification__single--unread d-flex flex-wrap">
+                                        <div class="nav-notification__type nav-notification__type--primary">
+                                            <img class="svg" src="{% static 'img/svg/inbox.svg' %}" alt="inbox"/>
+                                        </div>
+                                        <div class="nav-notification__details">
+                                            <p>
+                                                <a href="" class="subject stretched-link text-truncate"
+                                                   style="max-width: 180px">James</a>
+                                                <span>sent you a message</span>
+                                            </p>
+                                            <p>
+                                                <span class="time-posted">5 hours ago</span>
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li class="nav-notification__single nav-notification__single--unread d-flex flex-wrap">
+                                        <div class="nav-notification__type nav-notification__type--secondary">
+                                            <img class="svg" src="{% static 'img/svg/upload.svg' %}" alt="upload"/>
+                                        </div>
+                                        <div class="nav-notification__details">
+                                            <p>
+                                                <a href="" class="subject stretched-link text-truncate"
+                                                   style="max-width: 180px">James</a>
+                                                <span>sent you a message</span>
+                                            </p>
+                                            <p>
+                                                <span class="time-posted">5 hours ago</span>
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li class="nav-notification__single nav-notification__single--unread d-flex flex-wrap">
+                                        <div class="nav-notification__type nav-notification__type--success">
+                                            <img class="svg" src="{% static 'img/svg/log-in.svg' %}" alt="log-in"/>
+                                        </div>
+                                        <div class="nav-notification__details">
+                                            <p>
+                                                <a href="" class="subject stretched-link text-truncate"
+                                                   style="max-width: 180px">James</a>
+                                                <span>sent you a message</span>
+                                            </p>
+                                            <p>
+                                                <span class="time-posted">5 hours ago</span>
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li class="nav-notification__single nav-notification__single d-flex flex-wrap">
+                                        <div class="nav-notification__type nav-notification__type--info">
+                                            <img class="svg" src="{% static 'img/svg/at-sign.svg' %}" alt="at-sign"/>
+                                        </div>
+                                        <div class="nav-notification__details">
+                                            <p>
+                                                <a href="" class="subject stretched-link text-truncate"
+                                                   style="max-width: 180px">James</a>
+                                                <span>sent you a message</span>
+                                            </p>
+                                            <p>
+                                                <span class="time-posted">5 hours ago</span>
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li class="nav-notification__single nav-notification__single d-flex flex-wrap">
+                                        <div class="nav-notification__type nav-notification__type--danger">
+                                            <img src="{% static 'img/svg/heart.svg' %}" alt="heart" class="svg"/>
+                                        </div>
+                                        <div class="nav-notification__details">
+                                            <p>
+                                                <a href="" class="subject stretched-link text-truncate"
+                                                   style="max-width: 180px">James</a>
+                                                <span>sent you a message</span>
+                                            </p>
+                                            <p>
+                                                <span class="time-posted">5 hours ago</span>
+                                            </p>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <a href="" class="dropdown-wrapper__more">See all incoming activity</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-author">
+                    {% if user.is_authenticated %}
+                        <div class="dropdown-custom">
+                            <a href="javascript:" class="nav-item-toggle">
+                                <img src="{% static 'img/author-nav.jpg' %}" alt="" class="rounded-circle"/>
+                                <span class="nav-item__title">{{ user.get_full_name }}<i class="las la-angle-down nav-item__arrow"></i></span>
+                            </a>
+                            <div class="dropdown-parent-wrapper">
+                                <div class="dropdown-wrapper">
+                                    <div class="nav-author__info">
+                                        <div class="author-img">
+                                            <img src="{% static 'img/author-nav.jpg' %}" alt="" class="rounded-circle"/>
+                                        </div>
+                                        <div>
+                                            <h6>{{ user.get_full_name }}</h6>
+                                            <span>UI Designer</span>
+                                        </div>
+                                    </div>
+                                    <div class="nav-author__options">
+                                        <ul>
+                                            <li>
+                                                <a href="">
+                                                    <img src="{% static 'img/svg/user.svg' %}" alt="user" class="svg"/>
+                                                    Profile</a>
+                                            </li>
+                                            <li>
+                                                <a href="">
+                                                    <img src="{% static 'img/svg/settings.svg' %}" alt="setting"
+                                                         class="svg"/>
+                                                    Settings</a>
+                                            </li>
+                                            <li>
+                                                <a href="">
+                                                    <img src="{% static 'img/svg/key.svg' %}" alt="key" class="svg"/>
+                                                    Billing</a>
+                                            </li>
+                                            <li>
+                                                <a href="">
+                                                    <img class="svg" src="{% static 'img/svg/users.svg' %}"
+                                                         alt="users"/>
+                                                    Activity</a>
+                                            </li>
+                                            <li>
+                                                <a href="">
+                                                    <img src="{% static 'img/svg/bell.svg' %}" alt="bell" class="svg"/>
+                                                    Help</a>
+                                            </li>
+                                        </ul>
+                                        <a href="{% url 'sign_out' %}" class="nav-author__signout">
+                                            <i class="uil uil-sign-out-alt"></i> Sign
+                                            Out</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </li>
+            </ul>
+            <div class="navbar-right__mobileAction d-md-none">
+                <a href="#" class="btn-search">
+                    <img src="{% static 'img/svg/search.svg' %}" alt="search" class="svg feather-search"/>
+                    <img src="{% static 'img/svg/x.svg' %}" alt="x" class="svg feather-x"/></a>
+                <a href="#" class="btn-author-action">
+                    <img class="svg" src="{% static 'img/svg/more-vertical.svg' %}" alt="more-vertical"/></a>
+            </div>
+        </div>
+    </nav>
+{% endwith %}

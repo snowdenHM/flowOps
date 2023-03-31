@@ -1,0 +1,95 @@
+// Comment Box Css
+
+.dm-comment-box{
+    @include e("author"){
+        margin-right: 15px;
+        @include xxs{
+            margin-right: 10px;
+        }
+        figure{
+            margin-bottom: 0;
+            img{
+                max-width: 32px;
+                border-radius: 50%;
+            }
+        }
+    }
+    @include e("content"){
+        .cci{
+            @include e("author-info"){
+                display: block;
+                font-size: 12px;
+                color: var(--color-dark);
+            }
+            @include e("comment-text"){
+                font-size: 14px;
+                margin: 4px 0 16px;
+                color:var(--color-light);
+            }
+            @include e("comment-actions"){
+                display: flex;
+                align-items: center;
+                a{
+                    font-size: 15px;
+                    color:var(--color-lighten);
+                    &.btn-reply{
+                        font-size: 12px;
+                    }
+                    .line-count{
+                        display: inline-block;
+                        margin: 0 10px 0 5px;
+                        font-size:12px;
+                    }
+                    svg{
+                        width:12px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+// Comment List Css
+.comment-list{
+    @include e("title"){
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+        border-bottom: 1px solid var(--border-light);
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6{
+            font-size: 12px;
+            font-weight: 400;
+            color:var(--color-gray);
+        }
+    }
+    @include e("ul"){
+        .comment-list__ul{
+            padding-left: 45px;
+        }
+    }
+}
+
+
+// Reply Editor Css
+
+.reply-editor{
+    @include e("author"){
+        margin-right: 15px;
+        img{
+            max-width: 32px;
+            border-radius: 50%;
+        }
+    }
+    @include e("form"){
+        textarea{
+            font-size: 14px;
+            min-height: 170px;
+            resize: none;
+        }
+    }
+}

@@ -1,0 +1,31 @@
+//checkbox solid bg
+@each $key, $color in ($theme-colors){
+  .checkbox-#{$key}{
+    .form-check-label::before{
+      background: #{$color};
+    }
+    .form-check-input:checked ~ .form-check-label::before{
+      background: #{$color};
+      border: 1px solid #{$color};
+    }
+    .form-check-input:checked ~ .form-check-label::after{
+      color: $light;
+    }
+  }
+}
+
+//checkbox outline generator
+@each $key, $color in ($theme-colors){
+  .checkbox-outline-#{$key}{
+    .form-check-label:before{
+      border: 1px solid var(--border-light);
+    }
+    .form-check-input:checked ~ .form-check-label::before{
+      border: 1px solid #{$color};
+      background: #{$color};
+    }
+    .form-check-input:checked ~ .form-check-label::after{
+      color: var(--color-white);
+    }
+  }
+}

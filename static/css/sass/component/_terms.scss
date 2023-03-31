@@ -1,0 +1,60 @@
+/* Terms */
+.terms{
+    margin-top: 10px;
+}
+.terms-breadcrumb{
+    background-color: rgba(var(--color-primary-rgba), .10);
+    border-radius: 10px;
+    min-height: 330px;
+    display: flex;
+    justify-content: center;
+    @include ssm{
+        min-height: 230px;
+    }
+    .display-1{
+        margin-top: 88px;
+        @include ssm{
+            margin-top: 50px;
+        }
+    }
+}
+
+.terms-content{
+    background-color: var(--color-white);
+    box-shadow:0 10px 50px rgba(var(--color-lighten-rgba), .20);
+    border-radius: 10px;
+    padding: 60px 50px;
+    margin-top: -120px;
+    @include ssm{
+        padding: 40px 30px;
+        margin-top: -100px;
+    }
+    @include e(group){
+        &:not(:last-child){
+            margin-bottom: 55px;
+            @include ssm{
+                margin-bottom: 40px;
+            }
+        }
+        h1{
+            margin-bottom: 30px;
+            @include ssm{
+                margin-bottom: 25px;
+            }
+        }
+        p{
+            font-size: 16px;
+            font-weight: 400;
+            line-height: lh(16px, 27px);
+            color: var(--color-gray);
+            margin-bottom: 0;
+            a{
+                color: var(--color-secondary);
+            }
+        }
+    }
+    @include e(update){
+        color: var(--color-light);
+        font-size: 15px;
+    }
+}
