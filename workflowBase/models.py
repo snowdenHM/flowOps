@@ -1,5 +1,10 @@
-from django.db import models
 import uuid
+
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
+from django.db import models
+
+
 # from django.contrib.auth.models import User, Group, Permission
 
 
@@ -14,6 +19,7 @@ class WorkflowBase(models.Model):
 
 class Workflow(WorkflowBase):
     name = models.CharField(max_length=255)
+    is_deploy = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
@@ -34,7 +40,7 @@ class State(WorkflowBase):
     stateType = models.CharField(choices=stateChoices, max_length=20, default='Flow')
 
     def __str__(self):
-        return self.selectWorkflow.name + ' --> ' + self.name + ' --> ' + self.stateType
+        return self.name
 
     class Meta:
         verbose_name = "State"
@@ -68,3 +74,16 @@ class TransitionEvents(WorkflowBase):
     class Meta:
         verbose_name = "Transition Event"
         verbose_name_plural = "Transition Events"
+
+
+class WorkflowInstance(WorkflowBase):
+    workflow = models.ForeignKey(Workflow, on_delete=models.CASCADE)
+    state = models.ForeignKey(State, on_delete=models.CASCADE)
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey('content_type', 'object_id')
+    status = models.BooleanField(default=False, null=True, blank=True)
+    history = models.JSONField(default=dict, null=True, blank=True)
+
+    def __str__(self):
+        return f'{self.workflow.name} - {self.content_object}'

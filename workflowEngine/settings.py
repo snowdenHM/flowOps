@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'dashboard.apps.DashboardConfig',
     'loginRegister.apps.LoginregisterConfig',
-    'workflowBase.apps.WorkflowbaseConfig'
+    'workflowBase.apps.WorkflowbaseConfig',
+    'widget_tweaks',
+    'todo.apps.TodoConfig'
 ]
 
 MIDDLEWARE = [
@@ -63,6 +65,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'workflowBase.context_processor.menu_items',
             ],
         },
     },

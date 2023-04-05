@@ -1,6 +1,6 @@
 {% extends 'layout/app.html' %}
 
-{% block title %} Workflow {% endblock %}
+{% block title %} Flow Instance {% endblock %}
 
 
 {% load static %}
@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb-main">
-                    <h4 class="text-capitalize breadcrumb-title">Workflow</h4>
+                    <h4 class="text-capitalize breadcrumb-title">Flows</h4>
                     <div class="breadcrumb-action justify-content-center flex-wrap">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
@@ -23,15 +23,6 @@
                             </ol>
                         </nav>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="breadcrumb-main m-0 breadcrumb-main--table justify-content-sm-between ">
-                <div class="action-btn">
-                    <a href="{% url 'workflow:createFlow' %}">
-                        <button type="button" class="btn btn-primary btn-sm">Add Flow</button>
-                    </a>
                 </div>
             </div>
         </div>
@@ -50,6 +41,12 @@
                                         <span class="userDatatable-title">Workflow</span>
                                     </th>
                                     <th>
+                                        <span class="userDatatable-title">Instance</span>
+                                    </th>
+                                    <th>
+                                        <span class="userDatatable-title">State</span>
+                                    </th>
+                                    <th>
                                         <span class="userDatatable-title">Status</span>
                                     </th>
                                     <th class="actions">
@@ -58,42 +55,52 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% for workflow in workflowData %}
+                                {% for flow in data %}
                                     <tr>
                                         <td>{{ forloop.counter }}</td>
                                         <td>
                                             <div class="d-flex">
                                                 <div class="userDatatable-inline-title">
-                                                    <a href="{% url 'workflow:detailFlow' workflow.id %}"
+                                                    <a href="#"
                                                        class="text-dark fw-500">
-                                                        <h6>{{ workflow.name }}</h6>
+                                                        <h6>{{ flow.workflow }}</h6>
                                                     </a>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="userDatatable-content d-inline-block">
-                                                {% if workflow.is_deploy %}
-                                                    <span class="bg-opacity-success  color-success userDatatable-content-status active">Published</span>
-                                                {% else %}
-                                                    <span class="bg-opacity-primary  color-primary userDatatable-content-status active">Draft</span>
-                                                {% endif %}
+                                            <div class="d-flex">
+                                                <div class="userDatatable-inline-title">
+                                                    <a href="#"
+                                                       class="text-dark fw-500">
+                                                        <h6>{{ flow.content_object }}</h6>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <div class="userDatatable-inline-title">
+                                                    <h6>{{ flow.state }}</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <div class="userDatatable-inline-title">
+                                                        <h6>{{ flow.status }}</h6>
+                                                </div>
                                             </div>
                                         </td>
                                         <td>
                                             <ul class="orderDatatable_actions mb-0 d-flex flex-wrap">
                                                 <li>
-                                                    <a href="{% url 'workflow:detailFlow' workflow.id %}" class="view">
-                                                        <i class="fa fa-server"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="{% url 'workflow:updateFlow' workflow.id %}" class="edit">
+                                                    <a href="#" class="edit">
                                                         <i class="uil uil-edit"></i>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="{% url 'workflow:deleteFlow' workflow.id %}"
+                                                    <a href="#"
                                                        class="remove">
                                                         <i class="uil uil-trash-alt"></i>
                                                     </a>
@@ -110,6 +117,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 
 

@@ -16370,6 +16370,10 @@ select.select-arrow-none::-ms-expand,
 	color: var(--color-danger);
 }
 
+.project-task-list--active-user .project-task-list__right ul li a:hover.deploy svg {
+	color: var(--color-danger);
+}
+
 .project-task-list__right ul li {
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -20732,12 +20736,12 @@ td.order-summery .total > div {
 }
 
 .orderDatatable_actions li a.view:hover {
-	background: rgba(var(--color-primary-rgba), 0.1);
+	background: rgba(var(--color-secondary-rgba), 0.1);
 }
 
 .orderDatatable_actions li a.view:hover svg,
 .orderDatatable_actions li a.view:hover i {
-	color: var(--color-primary);
+	color: var(--color-secondary);
 }
 
 .orderDatatable_actions li a.edit:hover {
@@ -20757,6 +20761,8 @@ td.order-summery .total > div {
 .orderDatatable_actions li a.remove:hover i {
 	color: var(--color-danger);
 }
+
+
 
 .orderDatatable_actions li a img,
 .orderDatatable_actions li a svg {

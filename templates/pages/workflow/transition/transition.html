@@ -4,6 +4,7 @@
 
 
 {% load static %}
+{% load widget_tweaks %}
 
 {% block content %}
     <div class="container-fluid">
@@ -28,7 +29,9 @@
         <div class="row">
             <div class="breadcrumb-main m-0 breadcrumb-main--table justify-content-sm-between ">
                 <div class="action-btn">
-                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal-basic">Add Transition</button>
+                    <a href="{% url 'workflow:createTransition' %}">
+                        <button type="button" class="btn btn-primary btn-sm">Add Transition</button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -44,10 +47,13 @@
                                         <span class="userDatatable-title">ID</span>
                                     </th>
                                     <th>
-                                        <span class="userDatatable-title">User</span>
+                                        <span class="userDatatable-title">Workflow</span>
                                     </th>
                                     <th>
-                                        <span class="userDatatable-title">Status</span>
+                                        <span class="userDatatable-title">Start State</span>
+                                    </th>
+                                    <th>
+                                        <span class="userDatatable-title">End State</span>
                                     </th>
                                     <th class="actions">
                                         <span class="userDatatable-title">Actions</span>
@@ -55,37 +61,51 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>#10</td>
-                                    <td>
-                                        <div class="d-flex">
-                                            <div class="userDatatable-inline-title">
-                                                <a href="#" class="text-dark fw-500">
-                                                    <h6>Daniel White</h6>
-                                                </a>
+                                {% for transition in transitData %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <div class="userDatatable-inline-title">
+                                                    <a href="#" class="text-dark fw-500">
+                                                        <h6>{{ transition.selectWorkflow }}</h6>
+                                                    </a>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="userDatatable-content d-inline-block">
-                                            <span class="bg-opacity-success  color-success userDatatable-content-status active">open</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <ul class="orderDatatable_actions mb-0 d-flex flex-wrap">
-                                            <li>
-                                                <a href="#" class="edit">
-                                                    <i class="uil uil-edit"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="remove">
-                                                    <i class="uil uil-trash-alt"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </td>
-                                </tr>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <div class="userDatatable-inline-title">
+                                                    <h6>{{ transition.startState }}</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <div class="userDatatable-inline-title">
+                                                    <h6>{{ transition.endState }}</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <ul class="orderDatatable_actions mb-0 d-flex flex-wrap">
+                                                <li>
+                                                    <a href="{% url 'workflow:updateTransition' transition.id %}"
+                                                       class="edit">
+                                                        <i class="uil uil-edit"></i>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="{% url 'workflow:deleteTransition' transition.id %}"
+                                                       class="remove">
+                                                        <i class="uil uil-trash-alt"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+
                                 </tbody>
                             </table>
                         </div>
@@ -96,26 +116,7 @@
         </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal-basic modal fade show" id="modal-basic" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-md" role="document">
-            <div class="modal-content modal-bg-white ">
-                <div class="modal-header">
-                    <h6 class="modal-title">Basic title</h6>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <img src="{% static 'img/svg/x.svg' %}" alt="x" class="svg">
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Some contents...</p>
-                    <p>Some contents...</p>
-                    <p>Some contents...</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary btn-sm">Save changes</button>
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
-                </div>
-            </div>
-        </div>
-    </div>
+
 {% endblock %}
+
+

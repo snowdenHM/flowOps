@@ -16,6 +16,25 @@
 
                 </ul>
             </li>
+            <li class="has-child {% if '/flows/' in request.path %}open{% endif %}">
+                <a href="#" class="{% if '/flows/' in request.path %}active{% endif %}">
+                    <span class="nav-icon fa fa-code-branch"></span>
+                    <span class="menu-text">Flows</span>
+                    <span class="toggle-icon"></span>
+                </a>
+                <ul>
+                    {% for item in menu_items %}
+                        <li>
+                            <a href="{% url 'workflow:flowInstance' item.name %}">
+                                <span class="menu-text">{{ item.name }}</span>
+                            </a>
+                        </li>
+                    {% endfor %}
+
+
+                </ul>
+            </li>
+
             <li class="menu-title mt-30">
                 <span>Applications</span>
             </li>
@@ -32,14 +51,13 @@
                 </a>
             </li>
             <li>
-                <a href="{% url 'workflow:transition' %}" class="{% if path_name == 'transition' %}active{% endif %}">
+                <a href="{% url 'workflow:transition' %}"
+                   class="{% if path_name == 'transition' %}active{% endif %}">
                     <span class="nav-icon fa fa-exchange-alt"></span>
                     <span class="menu-text">Transitions</span>
                 </a>
             </li>
-            <li class="menu-title mt-30">
-                <span>Settings</span>
-            </li>
+
 
         </ul>
     </div>

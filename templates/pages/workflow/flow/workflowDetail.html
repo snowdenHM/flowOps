@@ -1,0 +1,229 @@
+{% extends 'layout/app.html' %}
+
+{% block title %} Workflow {% endblock %}
+
+
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-main">
+                    <h4 class="text-capitalize breadcrumb-title">{{ flowData.name }} Workflow</h4>
+                    <div class="breadcrumb-action justify-content-center flex-wrap">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#"><i
+                                        class="las la-home"></i>Workflow</a></li>
+                                <li class="breadcrumb-item active"
+                                    aria-current="page">Flow
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="breadcrumb-main m-0 breadcrumb-main--table justify-content-sm-between ">
+                <div class="action-btn">
+                    {% if flowData.is_deploy %}
+                        <a href="#">
+                            <button type="button" class="btn btn-danger btn-sm">Deployed</button>
+                        </a>
+                    {% else %}
+                        <a href="#">
+                            <button type="button" class="btn btn-success btn-sm">Ready To Deploy</button>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="card card-default card-md mb-4">
+                    <div class="card-body">
+                        <div class="tab-wrapper">
+                            <div class="dm-tab tab-horizontal">
+                                <ul class="nav nav-tabs vertical-tabs" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="tab-horizontal-1-tab" data-bs-toggle="tab"
+                                           href="#tab-horizontal-1"
+                                           role="tab" aria-controls="tab-horizontal-1" aria-selected="true">Nodes</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="tab-horizontal-2-tab" data-bs-toggle="tab"
+                                           href="#tab-horizontal-2"
+                                           role="tab" aria-controls="tab-horizontal-1"
+                                           aria-selected="false">Transition</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="tab-horizontal-3-tab" data-bs-toggle="tab"
+                                           href="#tab-horizontal-3"
+                                           role="tab" aria-controls="tab-horizontal-3" aria-selected="false">Transition
+                                            Permission</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="tab-horizontal-4-tab" data-bs-toggle="tab"
+                                           href="#tab-horizontal-4"
+                                           role="tab" aria-controls="tab-horizontal-4" aria-selected="false">Graph</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane fade show active" id="tab-horizontal-1" role="tabpanel"
+                                         aria-labelledby="tab-horizontal-1-tab">
+                                        <div class="userDatatable userDatatable--ticket userDatatable--ticket--2 mt-1">
+                                            <div class="table-responsive">
+                                                <table class="table mb-0 table-borderless">
+                                                    <thead>
+                                                    <tr class="userDatatable-header">
+                                                        <th>
+                                                            <span class="userDatatable-title">ID</span>
+                                                        </th>
+                                                        <th>
+                                                            <span class="userDatatable-title">Node</span>
+                                                        </th>
+                                                        <th>
+                                                            <span class="userDatatable-title">Type</span>
+                                                        </th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {% for nodes in nodesData %}
+                                                        <tr>
+                                                            <td>{{ forloop.counter }}</td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="userDatatable-inline-title">
+                                                                        <a href="#" class="text-dark fw-500">
+                                                                            <h6>{{ nodes.name }}</h6>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="userDatatable-inline-title">
+                                                                        <h6>{{ nodes.stateType }}</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    {% endfor %}
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="tab-horizontal-2" role="tabpanel"
+                                         aria-labelledby="tab-horizontal-2-tab">
+                                        <div class="userDatatable userDatatable--ticket userDatatable--ticket--2 mt-1">
+                                            <div class="table-responsive">
+                                                <table class="table mb-0 table-borderless">
+                                                    <thead>
+                                                    <tr class="userDatatable-header">
+                                                        <th>
+                                                            <span class="userDatatable-title">ID</span>
+                                                        </th>
+                                                        <th>
+                                                            <span class="userDatatable-title">Node</span>
+                                                        </th>
+                                                        <th>
+                                                            <span class="userDatatable-title">Type</span>
+                                                        </th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {% for nodes in nodesData %}
+                                                        <tr>
+                                                            <td>{{ forloop.counter }}</td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="userDatatable-inline-title">
+                                                                        <a href="#" class="text-dark fw-500">
+                                                                            <h6>{{ nodes.name }}</h6>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="userDatatable-inline-title">
+                                                                        <h6>{{ nodes.stateType }}</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    {% endfor %}
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="tab-horizontal-3" role="tabpanel"
+                                         aria-labelledby="tab-horizontal-3-tab">
+                                        <div class="userDatatable userDatatable--ticket userDatatable--ticket--2 mt-1">
+                                            <div class="table-responsive">
+                                                <table class="table mb-0 table-borderless">
+                                                    <thead>
+                                                    <tr class="userDatatable-header">
+                                                        <th>
+                                                            <span class="userDatatable-title">ID</span>
+                                                        </th>
+                                                        <th>
+                                                            <span class="userDatatable-title">Node</span>
+                                                        </th>
+                                                        <th>
+                                                            <span class="userDatatable-title">Type</span>
+                                                        </th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {% for nodes in nodesData %}
+                                                        <tr>
+                                                            <td>{{ forloop.counter }}</td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="userDatatable-inline-title">
+                                                                        <a href="#" class="text-dark fw-500">
+                                                                            <h6>{{ nodes.name }}</h6>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="userDatatable-inline-title">
+                                                                        <h6>{{ nodes.stateType }}</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    {% endfor %}
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="tab-horizontal-4" role="tabpanel"
+                                         aria-labelledby="tab-horizontal-4-tab">
+                                        <p>Content of Tab Pane 4</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+
