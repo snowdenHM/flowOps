@@ -1,5 +1,5 @@
 from .models import Transition, State
-
+import time
 
 class WorkflowEngine:
     def __init__(self, workflow_instance):
@@ -23,7 +23,7 @@ class WorkflowEngine:
     # Validate Transition based on User permission
     def __validate_transition(self, next_state_pk):
         next_state = State.objects.get(pk=next_state_pk)  # will be used for user permissions
-        if self.current_state.type == 'End':
+        if self.current_state.stateType == 'End':
             self.workflow_instance.status = True
             self.workflow_instance.save()
             return False
@@ -35,10 +35,11 @@ class WorkflowEngine:
             raise Exception('Transition is invalid')
         next_state = State.objects.get(pk=next_state_pk)
         self.workflow_instance.state = next_state
-        self.workflow_instance.history[self.current_state] = next_state
+        self.workflow_instance.history[self.current_state.name] = next_state.name
         self.workflow_instance.save()
         self.current_state = next_state
 
+     
 # class WorkflowEngine:
 #     def __init__(self, workflow_instance):
 #         self.workflow_instance = workflow_instance

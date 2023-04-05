@@ -35,7 +35,7 @@ class State(WorkflowBase):
         ('End', 'End'),
         ('Flow', 'Flow'),
     ]
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255) # MAKE UNIQUE
     selectWorkflow = models.ForeignKey(Workflow, on_delete=models.CASCADE, related_name='workflowState')
     stateType = models.CharField(choices=stateChoices, max_length=20, default='Flow')
 

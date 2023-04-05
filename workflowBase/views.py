@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 
 from .forms import WorkflowForm, TransitionForm, StatesForm
 from .models import Workflow, State, Transition, WorkflowInstance
-
+from .utils import WorkflowEngine
 
 # Create your views here.
 
@@ -16,7 +16,12 @@ def workflow(request):
     # print(data.workflow_instance)
     # print(data.current_state)
     # print(data.workflow)
-    # print(data.get_valid_transitions())
+    # trans = data.get_transition_choices()
+    # print(trans)
+    # start_state = State.objects.get(id=trans[0][0])
+    # end_state = State.objects.get(id=trans[0][1])
+    # data.perform_transition(trans[0][1])
+    # print(f'Start: {start_state}\nEnd: {end_state}')
     return render(request, 'pages/workflow/flow/workflow.html', context)
 
 
