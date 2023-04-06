@@ -168,7 +168,7 @@ def flowInstanceDetails(request, name, instance):
     workflow = Workflow.objects.get(name=name)
     workflowInstance = WorkflowInstance.objects.get(object_id=instance)
     
-    data = WorkflowEngine(workflowInstance)
+    data = WorkflowEngine(workflowInstance, request.user)
     data.is_state_end(workflowInstance.state)
 
     transition_choices = data.get_transition_choices()
@@ -176,10 +176,15 @@ def flowInstanceDetails(request, name, instance):
     if request.method == 'POST':
         # print(request.POST)
         next_state_id = request.POST['nextStateId']
-        data.perform_transition(next_state_pk=next_state_id)
-        return JsonResponse({
-            'message':'State Successfully Changed'
-        })
+        ret = data.perform_transition(next_state_pk=next_state_id)
+        if ret:
+            return JsonResponse({
+                'message':'State Successfully Changed'
+            })
+        else:
+            return JsonResponse({
+                'message':'User not allowed to make Transition'
+            })
 
     context = {
         "workflow": workflow,
