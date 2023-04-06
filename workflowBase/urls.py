@@ -11,6 +11,7 @@ urlpatterns = [
     path('updateFlow/<str:pk>/', views.workflowUpdate, name='updateFlow'),
     path('deleteFlow/<str:pk>/', views.workflowDelete, name='deleteFlow'),
     path('detailFlow/<str:pk>/', views.workflowDetails, name='detailFlow'),
+    path('generateGraph/<str:pk>/', views.get_state_transition_graph, name='generateGraph'),
 
     # State CRUD
     path('state/', views.state, name='state'),
@@ -25,6 +26,7 @@ urlpatterns = [
     path('deleteTransition/<str:pk>/', views.transitionDelete, name='deleteTransition'),
 
     # Workflow Instance
-    path('flows/<str:name>/', views.flowInstance, name='flowInstance')
+    path('flows/<str:name>/', views.flowInstance, name='flowInstance'),
+    path('flows/<str:name>/<str:instance>/', views.flowInstanceDetails, name='flowInstanceDetails')
 
 ]

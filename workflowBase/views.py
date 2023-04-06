@@ -1,8 +1,12 @@
 from django.contrib import messages
-from django.shortcuts import render, redirect
-
+from django.shortcuts import render, redirect 
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+import graphviz
+# import netwrokx as nx
+# import matplotlib.pyplot as plt
 from .forms import WorkflowForm, TransitionForm, StatesForm
-from .models import Workflow, State, Transition, WorkflowInstance
+from .models import Workflow, State, Transition, WorkflowInstance, WorkflowGraph
 from .utils import WorkflowEngine
 
 # Create your views here.
@@ -11,17 +15,6 @@ from .utils import WorkflowEngine
 def workflow(request):
     workflowData = Workflow.objects.all().order_by('-created_at')
     context = {'workflowData': workflowData}
-    # inst = WorkflowInstance.objects.first()
-    # data = WorkflowEngine(inst)
-    # print(data.workflow_instance)
-    # print(data.current_state)
-    # print(data.workflow)
-    # trans = data.get_transition_choices()
-    # print(trans)
-    # start_state = State.objects.get(id=trans[0][0])
-    # end_state = State.objects.get(id=trans[0][1])
-    # data.perform_transition(trans[0][1])
-    # print(f'Start: {start_state}\nEnd: {end_state}')
     return render(request, 'pages/workflow/flow/workflow.html', context)
 
 
@@ -59,9 +52,33 @@ def workflowDelete(request, pk):
 def workflowDetails(request, pk):
     flowData = Workflow.objects.get(id=pk)
     nodesData = flowData.workflowState.all().order_by('created_at')
+    try:
+        graph = WorkflowGraph.objects.get(workflow=pk)
+        context['graph']= graph
+    except:
+        print('No Graph found for workflow')
     context = {'flowData': flowData, 'nodesData': nodesData}
     return render(request, 'pages/workflow/flow/workflowDetail.html', context)
 
+def get_state_transition_graph(request,pk): # workflow_instace
+    workflow = Workflow.objects.get(id=pk)
+    states=State.objects.filter(selectWorkflow=workflow)
+    G = graphviz.Digraph(format='png')
+    for state in states:
+        if state.stateType=='Initial':
+            G.node(state.name, shape='circle')
+        elif state.stateType=='End':
+            G.node(state.name, shape='circle')
+        else:
+            G.node(state.name, shape='rectangle')
+    trans=Transition.objects.filter(selectWorkflow=workflow)
+    for tran in trans:
+        G.edge(tran.startState.name, tran.endState.name, label=tran.description)
+    path=f'workflow/State_Machine_Graph_{workflow.name}.png'
+    G.render(path, view=True)
+    x=WorkflowGraph.objects.create(workflow=workflow,graph=path)
+    x.save()
+    return redirect('workflow:detailFlow', pk)
 
 # State Workflow CRUD
 def state(request):
@@ -146,7 +163,28 @@ def flowInstance(request, name):
     context = {'data': data}
     return render(request, 'pages/workflow/instance/base.html', context)
 
+@csrf_exempt
+def flowInstanceDetails(request, name, instance):
+    workflow = Workflow.objects.get(name=name)
+    workflowInstance = WorkflowInstance.objects.get(workflow=workflow.id)
+    
+    data = WorkflowEngine(workflowInstance)
+    data.is_state_end(workflowInstance.state)
 
-def flowInstanceDetails(request):
-    context = {}
+    transition_choices = data.get_transition_choices()
+    
+    if request.method == 'POST':
+        # print(request.POST)
+        next_state_id = request.POST['nextStateId']
+        data.perform_transition(next_state_pk=next_state_id)
+        return JsonResponse({
+            'message':'State Successfully Changed'
+        })
+
+    context = {
+        "workflow": workflow,
+        "instance": workflowInstance,
+        "transitions": transition_choices
+    }
     return render(request, 'pages/workflow/instance/flowDetail.html', context)
+

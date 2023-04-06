@@ -1,6 +1,5 @@
 asgiref==3.6.0
-certifi @ file:///C:/b/abs_85o_6fm0se/croot/certifi_1671487778835/work/certifi
-Django==4.2
+Django==4.1.4
 django-widget-tweaks==1.4.12
 sqlparse==0.4.3
 tzdata==2023.3

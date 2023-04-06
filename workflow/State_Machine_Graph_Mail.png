@@ -1,0 +1,8 @@
+digraph {
+	New [shape=circle]
+	Read [shape=rectangle]
+	Reply [shape=circle]
+	New -> Read [label="New Mail Landed then goes to Read mail"]
+	Read -> Reply [label="Read to Reply Node"]
+	New -> Reply [label="Direct Finish"]
+}

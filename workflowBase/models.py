@@ -87,3 +87,15 @@ class WorkflowInstance(WorkflowBase):
 
     def __str__(self):
         return f'{self.workflow.name} - {self.content_object}'
+
+
+class WorkflowGraph(WorkflowBase):
+    workflow = models.ForeignKey(Workflow, on_delete=models.CASCADE)
+    graph = models.FileField(upload_to='workflow/', null=True, blank=True)
+
+    def __str__(self):
+        return self.workflow.name
+
+    class Meta:
+        verbose_name = "Workflow Graph"
+        verbose_name_plural = "Workflow Graphs"

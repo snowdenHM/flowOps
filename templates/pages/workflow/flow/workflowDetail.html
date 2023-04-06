@@ -39,6 +39,13 @@
                         </a>
                     {% endif %}
                 </div>
+                <div class="action-btn">
+
+                    <a href="{% url 'workflow:generateGraph' flowData.id %}">
+                        <button type="button" class="btn btn-warning btn-sm">Generate Graph</button>
+                    </a>
+
+                </div>
             </div>
         </div>
         <div class="row mt-3">
@@ -212,7 +219,7 @@
                                     </div>
                                     <div class="tab-pane fade" id="tab-horizontal-4" role="tabpanel"
                                          aria-labelledby="tab-horizontal-4-tab">
-                                        <p>Content of Tab Pane 4</p>
+                                        <p>{{ graph.graph }}</p>
                                     </div>
                                 </div>
                             </div>

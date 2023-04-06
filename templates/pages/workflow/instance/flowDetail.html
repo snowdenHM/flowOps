@@ -10,115 +10,175 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <div class="breadcrumb-main">
-                    <h4 class="text-capitalize breadcrumb-title">Flows</h4>
-                    <div class="breadcrumb-action justify-content-center flex-wrap">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#"><i
-                                        class="las la-home"></i>Workflow</a></li>
-                                <li class="breadcrumb-item active"
-                                    aria-current="page">Flow
-                                </li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row mt-2">
-            <div class="col-12 mb-30">
-                <div class="support-ticket-system support-ticket-system--search">
-                    <div class="userDatatable userDatatable--ticket userDatatable--ticket--2 mt-1">
-                        <div class="table-responsive">
-                            <table class="table mb-0 table-borderless">
-                                <thead>
-                                <tr class="userDatatable-header">
-                                    <th>
-                                        <span class="userDatatable-title">ID</span>
-                                    </th>
-                                    <th>
-                                        <span class="userDatatable-title">Workflow</span>
-                                    </th>
-                                    <th>
-                                        <span class="userDatatable-title">Instance</span>
-                                    </th>
-                                    <th>
-                                        <span class="userDatatable-title">State</span>
-                                    </th>
-                                    <th>
-                                        <span class="userDatatable-title">Status</span>
-                                    </th>
-                                    <th class="actions">
-                                        <span class="userDatatable-title">Actions</span>
-                                    </th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {% for flow in data %}
-                                    <tr>
-                                        <td>{{ forloop.counter }}</td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <div class="userDatatable-inline-title">
-                                                    <a href="#"
-                                                       class="text-dark fw-500">
-                                                        <h6>{{ flow.workflow }}</h6>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <div class="userDatatable-inline-title">
-                                                    <a href="#"
-                                                       class="text-dark fw-500">
-                                                        <h6>{{ flow.content_object }}</h6>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <div class="userDatatable-inline-title">
-                                                    <h6>{{ flow.state }}</h6>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <div class="userDatatable-inline-title">
-                                                        <h6>{{ flow.status }}</h6>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <ul class="orderDatatable_actions mb-0 d-flex flex-wrap">
-                                                <li>
-                                                    <a href="#" class="edit">
-                                                        <i class="uil uil-edit"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"
-                                                       class="remove">
-                                                        <i class="uil uil-trash-alt"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-
-                                </tbody>
-                            </table>
+                <div class="breadcrumb-main application-ui mb-30">
+                    <div class="breadcrumb-action d-flex">
+                        <div class="d-flex align-items-center user-member__title me-sm-25 me-0">
+                            <h4 class="text-capitalize fw-500 breadcrumb-title">{{ instance.workflow }} -- {{ instance.content_object }}</h4>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
+        <div class="projects-tab-content mb-30">
+            <div class="row">
+                <div class="col-xxl-3 col-lg-4 mb-25">
+                    <div class="progress-box px-25 pt-25 pb-10 bg-success radius-xl">
+                        <div class="d-flex justify-content-between mb-3">
+                            <h6 class="text-white fw-500 fs-16 text-capitalize">progress</h6>
+                            <span class="progress-percentage text-white fw-500 fs-16 text-capitalize">64%</span>
+                        </div>
+                        <div class="progress-wrap d-flex align-items-center mb-15">
+                            <div class="progress progress-height">
+                                <div class="progress-bar bg-white" role="progressbar" style="width: 64%;" aria-valuenow="64"
+                                    aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mt-25">
+                        <div class="card-body">
+                            <div class="application-task d-flex align-items-center mb-25">
+                                <div class="application-task-icon wh-60 bg-opacity-secondary content-center">
+                                    <img class="svg wh-25 text-secondary" src="{% static 'img/svg/at.svg' %}" alt="img">
+                                </div>
+                                <div class="application-task-content">
+                                    <h4>47</h4>
+                                    <span class="text-light fs-14 mt-1 text-capitalize">total task</span>
+                                </div>
+                            </div>
+                            <div class="application-task d-flex align-items-center mb-25">
+                                <div class="application-task-icon wh-60 bg-opacity-primary content-center">
+                                    <img class="svg wh-25 text-primary" src="{% static 'img/svg/at2.svg' %}" alt="img">
+                                </div>
+                                <div class="application-task-content">
+                                    <h4>34</h4>
+                                    <span class="text-light fs-14 mt-1 text-capitalize">task completed</span>
+                                </div>
+                            </div>
+                            <div class="application-task d-flex align-items-center mb-25">
+                                <div class="application-task-icon wh-60 bg-opacity-success content-center">
+                                    <img class="svg wh-25 text-success" src="{% static 'img/svg/at4.svg' %}" alt="img">
+                                </div>
+                                <div class="application-task-content">
+                                    <h4>$27,500</h4>
+                                    <span class="text-light fs-14 mt-1 text-capitalize">Spendings</span>
+                                </div>
+                            </div>
+                            <div class="application-task d-flex align-items-center">
+                                <div class="application-task-icon wh-60 bg-opacity-warning content-center">
+                                    <img class="svg wh-25 text-warning" src="{% static 'img/svg/at3.svg' %}" alt="img">
+                                </div>
+                                <div class="application-task-content">
+                                    <h4>250</h4>
+                                    <span class="text-light fs-14 mt-1 text-capitalize">hours spent</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-9 col-lg-8">
+                    <div class="row">
+                        <!-- Flow Instance History -->
+                        <div class="col-xxl-8 col-lg-7 col-12 mb-25">
+                            <div class="card pb-10 border-0">
+                                <div class="card-header p-0">
+                                    <ul class="nav px-25 ap-tab-main app-ui-tab" id="project-ap-tab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="project-timeline-tab" data-bs-toggle="pill" href="#project-timeline"
+                                                role="tab" aria-controls="project-timeline" aria-selected="true">Activities</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="tab-content w-100" id="projectContent">
+                                    <div class="tab-pane fade show active" id="project-timeline" role="tabpanel"
+                                        aria-labelledby="project-timeline-tab">
+                                        <div class="card-body px-0 mx-25 border-bottom">
+                                            <div class="task-activities d-flex align-items-center">
+                                                <div class="task-activities__left d-flex">
+                                                    <div class="content-center border bg-normal radius-xl me-sm-20 me-0 task-activities__month">
+                                                        <div class=" px-20 text-center">
+                                                            <h5>22</h5>
+                                                            <span class="fs-13 color-gray">December</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="task-activities__right">
+                                                        <ul>
+                                                            <li class="">
+                                                                <div class="ffp d-flex justify-content-between align-items-center w-100">
+                                                                    <div class="d-flex">
+                                                                        <div class="me-3 ffp__imgWrapper d-flex align-items-center ">
+                                                                            <span
+                                                                                class=" wh-24 me-15 rounded-circle content-center color-danger bg-opacity-danger">
+                                                                                <img src="#" alt="plus" class="svg"></span>
+                                                                            <span class="profile-image rounded-circle d-block wh-34 m-0 "
+                                                                                style="background-image:url('#'); background-size: cover;"></span>
+                                                                        </div>
+                                                                        <div>
+                                                                            <a href="#">
+                                                                                <p class="fw-500 fs-14 text-dark mb-0">Mumtahin
+                                                                                    <span class="color-light mx-1 fw-400">added new
+                                                                                        task</span>Mumtahin Dashboard Project
+                                                                                </p>
+                                                                            </a>
+                                                                            <span class="pt-1 d-block color-extra-light fs-12">
+                                                                                3:30 PM
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Flow Instance Transitions -->
+                        <div class="col-xxl-4 col-lg-12 col-12 mb-25">
+                            <div class="card pb-35 border-0">
+                                <div class="card-header d-flex justify-content-between align-items-center py-10  px-sm-25 px-3">
+                                    <h6 class="fw-500">Transitions</h6>
+                                </div>
+                                <div class="card-body">
+                                        {% for transition in transitions %}
+                                            <input type="submit" class="btn btn-warning btn-sm mt-3"
+                                            value="{{transition.0}} --> {{transition.1}}" id="{{transition.1.id}}"/>
+                                        {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.btn').click(function(event){
+                event.preventDefault();
+                
+                let buttonId = $(this).attr('id');
+                
+                $.ajax({
+                    type: 'POST',
+                    url:  `{% url 'workflow:flowInstanceDetails' instance.workflow instance.content_object %}`,
+                    data: {
+                        "nextStateId":buttonId
+                    },
+                    success: function(response) {
+                        location.reload();
+                        alert(response.message);
+                    },
+                    error: function(response) {
+                        alert("Error");
+                    }
+                })
+            })
+        })
+    </script>
 
 
 {% endblock %}

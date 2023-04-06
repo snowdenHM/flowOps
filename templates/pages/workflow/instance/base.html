@@ -61,7 +61,7 @@
                                         <td>
                                             <div class="d-flex">
                                                 <div class="userDatatable-inline-title">
-                                                    <a href="#"
+                                                    <a href="{% url 'workflow:flowInstanceDetails' flow.workflow flow.content_object %}"
                                                        class="text-dark fw-500">
                                                         <h6>{{ flow.workflow }}</h6>
                                                     </a>
@@ -86,10 +86,12 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="d-flex">
-                                                <div class="userDatatable-inline-title">
-                                                        <h6>{{ flow.status }}</h6>
-                                                </div>
+                                            <div class="d-inline-block">
+                                                {% if flow.status %}
+                                                <span class="media-badge color-white bg-success">Close</span>
+                                                {% else %}
+                                                <span class="media-badge color-white bg-secondary">Open</span>
+                                                {% endif %}
                                             </div>
                                         </td>
                                         <td>
