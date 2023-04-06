@@ -166,7 +166,7 @@ def flowInstance(request, name):
 @csrf_exempt
 def flowInstanceDetails(request, name, instance):
     workflow = Workflow.objects.get(name=name)
-    workflowInstance = WorkflowInstance.objects.get(workflow=workflow.id)
+    workflowInstance = WorkflowInstance.objects.get(object_id=instance)
     
     data = WorkflowEngine(workflowInstance)
     data.is_state_end(workflowInstance.state)

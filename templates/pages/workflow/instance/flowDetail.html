@@ -164,7 +164,7 @@
                 
                 $.ajax({
                     type: 'POST',
-                    url:  `{% url 'workflow:flowInstanceDetails' instance.workflow instance.content_object %}`,
+                    url:  `{% url 'workflow:flowInstanceDetails' instance.workflow instance.object_id %}`,
                     data: {
                         "nextStateId":buttonId
                     },
