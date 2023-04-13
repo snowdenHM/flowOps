@@ -46,7 +46,7 @@ def signup(request):
                 password=request.POST['password']
             )
             login(request, user)
-            return redirect('main')
+            return redirect('dashboard:main')
         else:
             return render(request, 'auth/register.html', {'form': form})
     return redirect('register')

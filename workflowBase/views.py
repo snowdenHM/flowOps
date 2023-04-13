@@ -1,20 +1,28 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect 
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import permission_required
 from django.http import JsonResponse
 import graphviz
+from django.core.mail import send_mail
+
+
 # import netwrokx as nx
 # import matplotlib.pyplot as plt
-from .forms import WorkflowForm, TransitionForm, StatesForm
-from .models import Workflow, State, Transition, WorkflowInstance, WorkflowGraph
+from .forms import WorkflowForm, TransitionForm, StatesForm, TransitionEventsForm
+from .models import Workflow, State, Transition, WorkflowInstance, WorkflowGraph, TransitionEvents
 from .utils import WorkflowEngine
 
 # Create your views here.
 
+
 # Workflow CRUD views
 def workflow(request):
+    
     workflowData = Workflow.objects.all().order_by('-created_at')
     context = {'workflowData': workflowData}
+    # else:
+        # raise PermissionDenied
     return render(request, 'pages/workflow/flow/workflow.html', context)
 
 
@@ -49,6 +57,8 @@ def workflowDelete(request, pk):
     return redirect('workflow:workflow')
 
 
+
+
 def workflowDetails(request, pk):
     flowData = Workflow.objects.get(id=pk)
     nodesData = flowData.workflowState.all().order_by('created_at')
@@ -59,6 +69,11 @@ def workflowDetails(request, pk):
         print('No Graph found for workflow')
     context = {'flowData': flowData, 'nodesData': nodesData}
     return render(request, 'pages/workflow/flow/workflowDetail.html', context)
+
+
+
+
+
 
 def get_state_transition_graph(request,pk): # workflow_instace
     workflow = Workflow.objects.get(id=pk)
@@ -164,27 +179,33 @@ def flowInstance(request, name):
     return render(request, 'pages/workflow/instance/base.html', context)
 
 @csrf_exempt
+
+# @permission_required('workflow.change_workflowinstance')
 def flowInstanceDetails(request, name, instance):
+    
+    user=request.user
+    
     workflow = Workflow.objects.get(name=name)
     workflowInstance = WorkflowInstance.objects.get(object_id=instance)
-    
     data = WorkflowEngine(workflowInstance, request.user)
     data.is_state_end(workflowInstance.state)
-
     transition_choices = data.get_transition_choices()
-    
+        
+   
+        
     if request.method == 'POST':
-        # print(request.POST)
         next_state_id = request.POST['nextStateId']
-        ret = data.perform_transition(next_state_pk=next_state_id)
-        if ret:
-            return JsonResponse({
-                'message':'State Successfully Changed'
-            })
+        if user.has_perm('workflow.change_workflowinstance'):
+            ret = data.perform_transition(next_state_pk=next_state_id)
+            # trans=data.get_valid_transitions()
+            if ret: 
+                return JsonResponse({
+                    'message':'State Successfully Changed'
+                })
         else:
             return JsonResponse({
-                'message':'User not allowed to make Transition'
-            })
+                    'message':'User not allowed to make Transition!'
+                })
 
     context = {
         "workflow": workflow,
@@ -193,3 +214,59 @@ def flowInstanceDetails(request, name, instance):
     }
     return render(request, 'pages/workflow/instance/flowDetail.html', context)
 
+# def send_mail(request):
+
+#                     # Build the email message
+#     subject = "Workflow Transition"
+#     message = f"Trasition are being made!"
+#     from_email = "send@example.com"
+#     recipient_list = "rec@example.com"
+
+
+#     # Send the email
+#     sent=send_mail(subject, message, from_email, recipient_list)
+#     if sent==1:
+#         return JsonResponse({
+#             'message':'Mail Sent Successfully'
+#         })
+#     else:
+#         return JsonResponse({
+#             'message':'Mail Not Sent'
+#         })
+
+
+# def transitionevents(request):
+#     workflowData = TransitionEvents.objects.all().order_by('-created_at')
+#     context = {'workflowData': workflowData}
+#     return render(request, 'pages/workflow/flow/workflow.html', context)
+
+
+# def eventsCreate(request):
+#     form = TransitionEventsForm()
+#     if request.method == 'POST':
+#         form = TransitionEventsForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             messages.success(request, 'Flow Created Successfully')
+#             return redirect('workflow:workflow')
+#     context = {'form': form}
+#     return render(request, 'pages/workflow/flow/workflowCreate.html', context)
+
+
+# def eventsUpdate(request, pk):
+#     flowUpdate = TransitionEvents.objects.get(id=pk)
+#     form = TransitionEventsForm(instance=flowUpdate)
+#     if request.method == 'POST':
+#         form = TransitionEventsForm(request.POST, instance=flowUpdate)
+#         if form.is_valid():
+#             form.save()
+#             messages.success(request, 'Flow Update Successfully')
+#             return redirect('workflow:workflow')
+#     context = {'form': form}
+#     return render(request, 'pages/workflow/flow/workflowUpdate.html', context)
+
+
+# def eventsDelete(request, pk):
+#     flow = TransitionEvents.objects.get(id=pk)
+#     flow.delete()
+#     return redirect('workflow:workflow')

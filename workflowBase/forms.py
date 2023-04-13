@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Workflow, State, Transition
+from .models import Workflow, State, Transition, TransitionEvents
 class WorkflowForm(ModelForm):
     class Meta:
         model = Workflow
@@ -15,4 +15,9 @@ class StatesForm(ModelForm):
 class TransitionForm(ModelForm):
     class Meta:
         model = Transition
+        fields = "__all__"
+
+class TransitionEventsForm(ModelForm):
+    class Meta:
+        model = TransitionEvents
         fields = "__all__"

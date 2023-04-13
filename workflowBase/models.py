@@ -5,7 +5,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
 
-# from django.contrib.auth.models import User, Group, Permission
+from django.contrib.auth.models import User, Group, Permission
 
 
 class WorkflowBase(models.Model):
@@ -47,20 +47,6 @@ class State(WorkflowBase):
         verbose_name_plural = "States"
 
 
-class Transition(WorkflowBase):
-    selectWorkflow = models.ForeignKey(Workflow, on_delete=models.CASCADE, related_name='workflowTransition')
-    startState = models.ForeignKey(State, on_delete=models.CASCADE, related_name="transitionStartState")
-    endState = models.ForeignKey(State, on_delete=models.CASCADE, related_name="transitionEndState")
-    description = models.CharField(max_length=255, default='')
-
-    def __str__(self):
-        return self.startState.name + ' ---> ' + self.endState.name
-
-    class Meta:
-        verbose_name = "Transition"
-        verbose_name_plural = "Transitions"
-
-
 class TransitionEvents(WorkflowBase):
     eventChoices = [
         ('Mail', 'Mail'),
@@ -74,6 +60,21 @@ class TransitionEvents(WorkflowBase):
     class Meta:
         verbose_name = "Transition Event"
         verbose_name_plural = "Transition Events"
+
+class Transition(WorkflowBase):
+    selectWorkflow = models.ForeignKey(Workflow, on_delete=models.CASCADE, related_name='workflowTransition')
+    startState = models.ForeignKey(State, on_delete=models.CASCADE, related_name="transitionStartState")
+    endState = models.ForeignKey(State, on_delete=models.CASCADE, related_name="transitionEndState")
+    description = models.CharField(max_length=255, default='')
+    event=models.ForeignKey(TransitionEvents, on_delete=models.CASCADE, related_name='transitionEvent', null=True, blank=True)
+    permission = models.ForeignKey(Group, on_delete=models.CASCADE, related_name='transitionPermission', null=True, blank=True)
+    def __str__(self):
+        return self.startState.name + ' ---> ' + self.endState.name
+
+    class Meta:
+        verbose_name = "Transition"
+        verbose_name_plural = "Transitions"
+
 
 
 class WorkflowInstance(WorkflowBase):

@@ -58,6 +58,11 @@
 
 {#    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDduF2tLXicDEPDMAtC6-NLOekX0A5vlnY"></script>#}
     <script src="{% static 'js/env.js' %}"></script>
+    <script>var message_ele = document.getElementById("messagenoti");
+
+        setTimeout(function(){ 
+           message_ele.style.display = "none"; 
+        }, 2000);</script>
 
     {% include 'partials/_scripts.html' %}
 </body>
