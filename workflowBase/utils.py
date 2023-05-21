@@ -1,5 +1,8 @@
 from .models import Transition, State, WorkflowGraph, WorkflowInstance
 from time import strftime, time, localtime
+from django.core.mail import send_mail
+from django.conf import settings
+from django.contrib.auth import get_user_model
 
 class WorkflowEngine:
     def __init__(self, workflow_instance, user):
@@ -8,13 +11,13 @@ class WorkflowEngine:
         self.current_state = workflow_instance.state
 
     # Get all possible transitions from Current State
-    def get_valid_transitions(self):
+    def __get_valid_transitions(self):
         transitions = Transition.objects.filter(selectWorkflow=self.workflow_instance.workflow).filter(startState=self.current_state)
         return transitions
 
     # Choices of States to transition to from Current State
     def get_transition_choices(self):
-        return [(transition.startState, transition.endState) for transition in self.get_valid_transitions()]
+        return [(transition.startState, transition.endState) for transition in self.__get_valid_transitions()]
 
     # Validate Transition based on User permission
     def __validate_transition(self, next_state_pk):
@@ -47,7 +50,27 @@ class WorkflowEngine:
         self.workflow_instance.save()
         self.current_state = next_state
         return True
+    
+def send_email_to_user( message, recipient):
 
+    subject = "Workflow Transition Information"
+    message = message
+    from_email = settings.EMAIL_HOST_USER
+    recipient = recipient
+
+
+    send_mail(subject, message, from_email, recipient)
     
         
+
+
+def get_emails_with_permission(permission_name):
+    User = get_user_model()
+    print(User)
+    users_with_permission = User.objects.filter(user_permissions__codename=permission_name)
+    print(users_with_permission)
+    emails = users_with_permission.values_list('email', flat=True)
+    # print(emails)
+    return list(emails)
+
 

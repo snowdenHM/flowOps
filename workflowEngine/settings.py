@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'todo.apps.TodoConfig',
     'rest_framework',
-    'api.apps.ApiConfig'
+    'api.apps.ApiConfig',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +127,9 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'atishay345@gmail.com'
+EMAIL_HOST_PASSWORD = 'nlykikrsmcjtgonn'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

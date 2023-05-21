@@ -3,8 +3,6 @@ import uuid
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
-
-
 from django.contrib.auth.models import User, Group, Permission
 
 
@@ -35,7 +33,7 @@ class State(WorkflowBase):
         ('End', 'End'),
         ('Flow', 'Flow'),
     ]
-    name = models.CharField(max_length=255) # MAKE UNIQUE
+    name = models.CharField(max_length=255, unique=True) # MAKE UNIQUE
     selectWorkflow = models.ForeignKey(Workflow, on_delete=models.CASCADE, related_name='workflowState')
     stateType = models.CharField(choices=stateChoices, max_length=20, default='Flow')
 
@@ -65,9 +63,9 @@ class Transition(WorkflowBase):
     selectWorkflow = models.ForeignKey(Workflow, on_delete=models.CASCADE, related_name='workflowTransition')
     startState = models.ForeignKey(State, on_delete=models.CASCADE, related_name="transitionStartState")
     endState = models.ForeignKey(State, on_delete=models.CASCADE, related_name="transitionEndState")
-    description = models.CharField(max_length=255, default='')
-    event=models.ForeignKey(TransitionEvents, on_delete=models.CASCADE, related_name='transitionEvent', null=True, blank=True)
-    permission = models.ForeignKey(Group, on_delete=models.CASCADE, related_name='transitionPermission', null=True, blank=True)
+    description = models.CharField(max_length=255, null=True, blank=True)
+    event=models.ManyToManyField(TransitionEvents, related_name='transitionEvent', null=True, blank=True)
+    permission = models.ManyToManyField(Group, related_name='transitionPermission', null=True, blank=True)
     def __str__(self):
         return self.startState.name + ' ---> ' + self.endState.name
 
@@ -100,3 +98,18 @@ class WorkflowGraph(WorkflowBase):
     class Meta:
         verbose_name = "Workflow Graph"
         verbose_name_plural = "Workflow Graphs"
+
+
+class TransitionHistory(WorkflowBase):
+    workflow= models.ForeignKey(Workflow, on_delete=models.CASCADE)
+    content_object = models.ForeignKey(WorkflowInstance, on_delete=models.CASCADE)
+    start_state= models.ForeignKey(State, on_delete=models.CASCADE, related_name='start_state')
+    end_state= models.ForeignKey(State, on_delete=models.CASCADE, related_name='end_state')
+    description= models.CharField(max_length=255, null=True, blank=True)
+
+    def __str__(self):
+        return f'{self.workflow.name} - {self.content_object} --- {self.description}'
+    
+    class Meta:
+        verbose_name = "Transition History"
+        verbose_name_plural = "Transition Historys"

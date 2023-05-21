@@ -87,51 +87,11 @@
                                                 role="tab" aria-controls="project-timeline" aria-selected="true">Activities</a>
                                         </li>
                                     </ul>
-                                </div>
+                                </div>  
                                 <div class="tab-content w-100" id="projectContent">
-                                    <div class="tab-pane fade show active" id="project-timeline" role="tabpanel"
-                                        aria-labelledby="project-timeline-tab">
-                                        <div class="card-body px-0 mx-25 border-bottom">
-                                            <div class="task-activities d-flex align-items-center">
-                                                <div class="task-activities__left d-flex">
-                                                    <div class="content-center border bg-normal radius-xl me-sm-20 me-0 task-activities__month">
-                                                        <div class=" px-20 text-center">
-                                                            <h5>22</h5>
-                                                            <span class="fs-13 color-gray">December</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="task-activities__right">
-                                                        <ul>
-                                                            <li class="">
-                                                                <div class="ffp d-flex justify-content-between align-items-center w-100">
-                                                                    <div class="d-flex">
-                                                                        <div class="me-3 ffp__imgWrapper d-flex align-items-center ">
-                                                                            <span
-                                                                                class=" wh-24 me-15 rounded-circle content-center color-danger bg-opacity-danger">
-                                                                                <img src="#" alt="plus" class="svg"></span>
-                                                                            <span class="profile-image rounded-circle d-block wh-34 m-0 "
-                                                                                style="background-image:url('#'); background-size: cover;"></span>
-                                                                        </div>
-                                                                        <div>
-                                                                            <a href="#">
-                                                                                <p class="fw-500 fs-14 text-dark mb-0">Mumtahin
-                                                                                    <span class="color-light mx-1 fw-400">added new
-                                                                                        task</span>Mumtahin Dashboard Project
-                                                                                </p>
-                                                                            </a>
-                                                                            <span class="pt-1 d-block color-extra-light fs-12">
-                                                                                3:30 PM
-                                                                            </span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
+                                    {% include 'pages/workflow/instance/activities.html' %}
+                                    
                                 </div>
                             </div>
                         </div>
@@ -143,8 +103,12 @@
                                 </div>
                                 <div class="card-body">
                                         {% for transition in transitions %}
-                                            <input type="submit" class="btn btn-warning btn-sm mt-3"
-                                            value="{{transition.0}} --> {{transition.1}}" id="{{transition.1.id}}"/>
+                                        <a class="btn btn-warning" data-bs-toggle="modal" href="#transition" aria-expanded="false"
+                                         aria-controls="collapseOne" role="button"
+                                         onclick="getData('{{transition.0.id}}', '{{transition.1.id}}')">
+                                        {{ transition.0 }} --> {{ transition.1 }}
+                                        </a>
+                                        <br/>
                                         {% endfor %}
                                 </div>
                             </div>
@@ -154,23 +118,52 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="transition" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirm Transition</h5>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="POST" id="transitionConfirm">
+                        {% csrf_token %}
+                        <div class="mb3">
+                            {% render_field form.startStateId class="form-control" id="startState" %}
+                            {% render_field form.endStateId class="form-control" id="endState" %}
+                        </div>
+                        <div class="mb3">
+                            <label for="a8" class="il-gray fs-14 fw-500 align-center mb-10">Add Comment</label>
+                            {% render_field form.description class="form-control" id="transitionDesc" %}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('.btn').click(function(event){
+            $('#transitionConfirm').submit(function(event){
                 event.preventDefault();
                 
-                let buttonId = $(this).attr('id');
-                
+                let startStateId = $('#startState').val()
+                let endStateId = $('#endState').val()
+                let description = $('#transitionDesc').val()
+
                 $.ajax({
                     type: 'POST',
                     url:  `{% url 'workflow:flowInstanceDetails' instance.workflow instance.object_id %}`,
                     data: {
-                        "nextStateId":buttonId
+                        "startStateId": startStateId,
+                        "endStateId": endStateId,
+                        "description": description,
                     },
                     success: function(response) {
                         location.reload();
-                        alert(response.message);
+                        // alert(response.message);
                     },
                     error: function(response) {
                         alert("Error");
@@ -178,6 +171,12 @@
                 })
             })
         })
+    </script>
+    <script>
+        let getData = (startStateId, endStateId) => {
+            document.getElementById('startState').value = startStateId;
+            document.getElementById('endState').value = endStateId;
+        }
     </script>
 
 

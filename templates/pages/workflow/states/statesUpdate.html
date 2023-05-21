@@ -29,6 +29,11 @@
             </div>
             <div class="row">
                 <div class="col-lg-12">
+                    {% for message in messages %}
+                    <div class="alert alert-danger" id="messagenoti" role="alert">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
                     <div class="card card-default card-md mb-4">
                         <div class="card-body py-md-25">
                             <form action="" method="post">

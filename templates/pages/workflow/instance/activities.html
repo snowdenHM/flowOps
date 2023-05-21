@@ -1,0 +1,45 @@
+{% load static %}
+{% for i in history %}
+
+<div class="tab-pane fade show active" id="project-timeline" role="tabpanel" aria-labelledby="project-timeline-tab">
+    <div class="card-body px-0 mx-25 border-bottom">
+        <div class="task-activities d-flex align-items-center">
+            <div class="task-activities__left d-flex">
+                <div class="content-center border bg-normal radius-xl me-sm-20 me-0 task-activities__month">
+                    <div class=" px-20 text-center">
+                        <span class="fs-13 color-gray">{{i.created_at}}</span>
+                    </div>
+                </div>
+                <div class="task-activities__right">
+                    <ul>
+                        <li class="">
+                            <div class="ffp d-flex justify-content-between align-items-center w-100">
+                                <div class="d-flex">
+                                    <div class="me-3 ffp__imgWrapper d-flex align-items-center ">
+                                        <span
+                                            class=" wh-24 me-15 rounded-circle content-center color-danger bg-opacity-danger">
+                                            <img src="#" alt="plus" class="svg"></span>
+                                        <span class="profile-image rounded-circle d-block wh-34 m-0 "
+                                            style="background-image:url('#'); background-size: cover;"></span>
+                                    </div>
+                                    <div>
+                                        <a href="#">
+                                            <p class="fw-500 fs-14 text-dark mb-0">{{i.start_state}}
+                                                <span class="color-light mx-1 fw-400">moved to
+                                                </span>{{i.end_state}}
+                                            </p>
+                                        </a>
+                                        <span class="pt-1 d-block color-extra-light fs-12">
+                                            {{i.description}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}

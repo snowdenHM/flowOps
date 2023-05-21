@@ -22,6 +22,7 @@ urlpatterns = [
     # Transition CRUD
     path('transition/', views.transition, name='transition'),
     path('createTransition/', views.transitionCreate, name='createTransition'),
+    path('getStates/', views.getStates, name='getStates'),
     path('updateTransition/<str:pk>/', views.transitionUpdate, name='updateTransition'),
     path('deleteTransition/<str:pk>/', views.transitionDelete, name='deleteTransition'),
 
@@ -34,6 +35,10 @@ urlpatterns = [
     # Workflow Instance
     path('flows/<str:name>/', views.flowInstance, name='flowInstance'),
     path('flows/<str:name>/<str:instance>/', views.flowInstanceDetails, name='flowInstanceDetails'),
+
+    # path('detailFlow/<str:pk>/createDetailTransition/', views.transitionDetailCreate, name='createTransitionDetail'),
+    # path('detailFlow/<str:pk>/updateDetailTransition/<str:tk>/', views.transitionDetailUpdate, name='updateTransitionDetail'),
+    # path('detailFlow/<str:pk>/deleteDetailTransition/<str:tk>/', views.transitionDetailDelete, name='deleteTransitionDetail'),
 
 
 ]

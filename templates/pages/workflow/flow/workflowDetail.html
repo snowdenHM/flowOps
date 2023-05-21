@@ -41,9 +41,9 @@
                 </div>
                 <div class="action-btn">
 
-                    <a href="{% url 'workflow:generateGraph' flowData.id %}">
+                    <!-- <a href="{% url 'workflow:generateGraph' flowData.id %}">
                         <button type="button" class="btn btn-warning btn-sm">Generate Graph</button>
-                    </a>
+                    </a> -->
 
                 </div>
             </div>
@@ -136,22 +136,30 @@
                                                             <span class="userDatatable-title">ID</span>
                                                         </th>
                                                         <th>
-                                                            <span class="userDatatable-title">Node</span>
+                                                            <span class="userDatatable-title">Description</span>
                                                         </th>
                                                         <th>
-                                                            <span class="userDatatable-title">Type</span>
+                                                            <span class="userDatatable-title">Start State</span>
+                                                        </th>
+                                                        <th>
+                                                            <span class="userDatatable-title">End State</span>
                                                         </th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    {% for nodes in nodesData %}
+                                                        {% comment %} <div class="action-btn">
+                                                            <a href="{% url 'workflow:createTransitionDetail' workflowid %}">
+                                                                <button type="button" class="btn btn-primary btn-sm">Add Transition</button>
+                                                            </a>
+                                                        </div> {% endcomment %}
+                                                    {% for i in transitionsData %}
                                                         <tr>
                                                             <td>{{ forloop.counter }}</td>
                                                             <td>
                                                                 <div class="d-flex">
                                                                     <div class="userDatatable-inline-title">
                                                                         <a href="#" class="text-dark fw-500">
-                                                                            <h6>{{ nodes.name }}</h6>
+                                                                            <h6>{{ i.description }}</h6>
                                                                         </a>
                                                                     </div>
                                                                 </div>
@@ -159,11 +167,35 @@
                                                             <td>
                                                                 <div class="d-flex">
                                                                     <div class="userDatatable-inline-title">
-                                                                        <h6>{{ nodes.stateType }}</h6>
+                                                                        <h6>{{ i.startState }}</h6>
                                                                     </div>
                                                                 </div>
                                                             </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="userDatatable-inline-title">
+                                                                        <h6>{{ i.endState }}</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                {% comment %} <ul class="orderDatatable_actions mb-0 d-flex flex-wrap">
+                                                                    <li>
+                                                                        <a href="{% url 'workflow:updateTransitionDetail' workflowid nodes.id %}"
+                                                                           class="edit">
+                                                                            <i class="uil uil-edit"></i>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="{% url 'workflow:deleteTransitionDetail' workflowid nodes.id %}"
+                                                                           class="remove">
+                                                                            <i class="uil uil-trash-alt"></i>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>  {% endcomment %}
+                                                            </td>
                                                         </tr>
+                                                        
                                                     {% endfor %}
 
                                                     </tbody>

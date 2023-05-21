@@ -38,19 +38,25 @@
                                         <div class="form-group">
                                             <label for="a8" class="il-gray fs-14 fw-500 align-center mb-10">Select
                                                 Workflow</label>
-                                            {% render_field form.selectWorkflow class="form-select" %}
+                                            {% render_field form.selectWorkflow class='form-select' hx-get='/getStates/' hx-trigger='change' hx-target='#states' %}
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div class="form-group">
+                                        <div class="form-group" id="startState">
                                             <label for="a8" class="il-gray fs-14 fw-500 align-center mb-10">Start State</label>
                                             {% render_field form.startState class="form-select" %}
+                                                {% for state in states %}
+                                                <option value="{{ state.id }}">{{ state.name }}</option>
+                                                {% endfor %} 
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div class="form-group">
+                                        <div class="form-group" id="endState">
                                             <label for="a8" class="il-gray fs-14 fw-500 align-center mb-10">End State</label>
                                             {% render_field form.endState class="form-select" %}
+                                                {% for state in states %}
+                                                <option value="{{ state.id }}">{{ state.name }}</option>
+                                                {% endfor %} 
                                         </div>
                                     </div>
                                 </div>
